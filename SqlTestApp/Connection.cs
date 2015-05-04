@@ -25,10 +25,33 @@ namespace SqlTestApp
             connection.Open();
         }
 
-        static public SqlDataReader Test()
+        static private void fillInParameters(SqlCommand command, Dictionary<String, String> parameters)
         {
-            SqlCommand command = new SqlCommand(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_CLIENT), connection);
+            if (parameters == null)
+                return;
+
+            foreach (var param in parameters)
+            {
+                command.Parameters.AddWithValue(param.Key, param.Value);
+            }
+        }
+
+        static public SqlDataReader executeStatementAndGetReader(String statement, Dictionary<String, String> parameters = null)
+        {
+            SqlCommand command = new SqlCommand(statement, connection);
+
+            fillInParameters(command, parameters);
+
             return command.ExecuteReader();
+        }
+
+        static public int executeStatement(String statement, Dictionary<String, String> parameters = null)
+        {
+            SqlCommand command = new SqlCommand(statement, connection);
+
+            fillInParameters(command, parameters);
+
+            return command.ExecuteNonQuery();
         }
 
     }

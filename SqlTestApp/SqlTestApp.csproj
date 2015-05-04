@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddClient.Designer.cs">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionWindow.cs">
       <SubType>Form</SubType>
@@ -51,6 +57,7 @@
     <Compile Include="ConnectionWindow.Designer.cs">
       <DependentUpon>ConnectionWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +67,9 @@
     <Compile Include="PreparedStatements.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddClient.resx">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConnectionWindow.resx">
       <DependentUpon>ConnectionWindow.cs</DependentUpon>
     </EmbeddedResource>

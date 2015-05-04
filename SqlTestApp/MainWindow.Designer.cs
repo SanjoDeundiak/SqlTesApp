@@ -34,6 +34,8 @@
             this.reconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.addButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.middle_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +49,9 @@
             // 
             // clientsDataGridView
             // 
+            this.clientsDataGridView.AllowUserToAddRows = false;
+            this.clientsDataGridView.AllowUserToDeleteRows = false;
+            this.clientsDataGridView.AllowUserToOrderColumns = true;
             this.clientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.clientsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.number,
@@ -57,7 +62,7 @@
             this.address});
             this.clientsDataGridView.Location = new System.Drawing.Point(12, 27);
             this.clientsDataGridView.Name = "clientsDataGridView";
-            this.clientsDataGridView.Size = new System.Drawing.Size(1038, 150);
+            this.clientsDataGridView.Size = new System.Drawing.Size(1038, 506);
             this.clientsDataGridView.TabIndex = 0;
             // 
             // menuStrip1
@@ -81,7 +86,7 @@
             // reconnectToolStripMenuItem
             // 
             this.reconnectToolStripMenuItem.Name = "reconnectToolStripMenuItem";
-            this.reconnectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reconnectToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.reconnectToolStripMenuItem.Text = "Reconnect";
             // 
             // statusStrip1
@@ -99,6 +104,25 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(37, 17);
             this.toolStripStatusLabel1.Text = "Total:";
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(894, 539);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 3;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(975, 539);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 4;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
             // 
             // number
             // 
@@ -120,30 +144,36 @@
             this.middle_name.DataPropertyName = "middle_name";
             this.middle_name.HeaderText = "Middle Name";
             this.middle_name.Name = "middle_name";
+            this.middle_name.ReadOnly = true;
             // 
             // surname
             // 
             this.surname.DataPropertyName = "surname";
             this.surname.HeaderText = "Surname";
             this.surname.Name = "surname";
+            this.surname.ReadOnly = true;
             // 
             // dateOfBirth
             // 
             this.dateOfBirth.DataPropertyName = "date_of_birth";
             this.dateOfBirth.HeaderText = "Date of birth";
             this.dateOfBirth.Name = "dateOfBirth";
+            this.dateOfBirth.ReadOnly = true;
             // 
             // address
             // 
             this.address.DataPropertyName = "address";
             this.address.HeaderText = "Address";
             this.address.Name = "address";
+            this.address.ReadOnly = true;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 587);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.clientsDataGridView);
             this.Controls.Add(this.menuStrip1);
@@ -168,6 +198,8 @@
         private System.Windows.Forms.ToolStripMenuItem reconnectToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn middle_name;
