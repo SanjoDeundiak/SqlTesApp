@@ -37,6 +37,7 @@
             this.addButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_client = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.middle_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +56,7 @@
             this.clientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.clientsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.number,
+            this.id_client,
             this.name,
             this.middle_name,
             this.surname,
@@ -123,6 +125,7 @@
             this.deleteButton.TabIndex = 4;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // number
             // 
@@ -131,6 +134,14 @@
             this.number.HeaderText = "№";
             this.number.Name = "number";
             this.number.ReadOnly = true;
+            // 
+            // id_client
+            // 
+            this.id_client.DataPropertyName = "id_client";
+            this.id_client.HeaderText = "id_client";
+            this.id_client.Name = "id_client";
+            this.id_client.ReadOnly = true;
+            this.id_client.Visible = false;
             // 
             // name
             // 
@@ -201,6 +212,7 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_client;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn middle_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn surname;

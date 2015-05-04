@@ -16,10 +16,16 @@ namespace SqlTestApp
         INS_INDIVIDUAL,
         SIZE
     }
+    enum PreparedDeleteStatement
+    {
+        DEL_INDIVIDUAL,
+        SIZE
+    }
     static class PreparedStatements
     {
         static String[] selectStatements = new String[(int)PreparedSelectStatement.SIZE];
         static String[] insertStatements = new String[(int)PreparedInsertStatement.SIZE];
+        static String[] deleteStatements = new String[(int)PreparedDeleteStatement.SIZE];
 
         static PreparedStatements()
         {
@@ -30,6 +36,9 @@ namespace SqlTestApp
             insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] = 
                 @"INSERT INTO Client (time_of_registration) VALUES(CURRENT_TIMESTAMP);
                   INSERT INTO Individual (id_client, name, middle_name, surname, date_of_birth, address) Values(IDENT_CURRENT('Client'), @name, @middleName, @surname, @dateOfBirth, @address)";
+
+            // Delete statements here
+            deleteStatements[(int)PreparedDeleteStatement.DEL_INDIVIDUAL] = "DELETE FROM Individual WHERE id_client = @id";
         }
 
         static public String GetStatement(PreparedSelectStatement statement)
@@ -40,6 +49,10 @@ namespace SqlTestApp
         static public String GetStatement(PreparedInsertStatement statement)
         {
             return insertStatements[(int)statement];
+        }
+        static public String GetStatement(PreparedDeleteStatement statement)
+        {
+            return deleteStatements[(int)statement];
         }
     }
 }

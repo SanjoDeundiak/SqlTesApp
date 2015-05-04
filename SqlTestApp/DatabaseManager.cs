@@ -17,7 +17,7 @@ namespace SqlTestApp
             DataTable dt = new DataTable("");
 
             DataColumn number = new DataColumn();
-            number.DataType = typeof(UInt64);
+            number.DataType = typeof(Int32);
             number.AutoIncrementSeed = 1;
             number.AutoIncrementStep = 1;
             number.AutoIncrement = true;
@@ -29,7 +29,7 @@ namespace SqlTestApp
             return dt;
         }
 
-        static public void addClient(String name, String middleName, String surname, String dateOfBirth, String address)
+        static public void addIndividual(String name, String middleName, String surname, String dateOfBirth, String address)
         {
             Dictionary<String, String> parameters = new Dictionary<string,string>();
             parameters["@name"] = name;
@@ -39,6 +39,14 @@ namespace SqlTestApp
             parameters["@address"] = address;
 
             Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_INDIVIDUAL), parameters);
+        }
+
+        static public void deleteIndividual(Int32 id)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, String>();
+            parameters["@id"] = id.ToString();
+
+            Connection.executeStatement(PreparedStatements.GetStatement(PreparedDeleteStatement.DEL_INDIVIDUAL), parameters);
         }
     }
 }

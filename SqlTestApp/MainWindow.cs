@@ -17,15 +17,39 @@ namespace SqlTestApp
             InitializeComponent();
 
             clientsDataGridView.AutoGenerateColumns = false;
+
+            init();
+        }
+
+        private void init()
+        {
             clientsDataGridView.DataSource = DatabaseManager.getIndividualClients();
 
-            this.toolStripStatusLabel1.Text = "Total: " + (clientsDataGridView.RowCount - 1);
+            toolStripStatusLabel1.Text = "Total: " + clientsDataGridView.RowCount;
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             AddClient form = new AddClient();
             form.ShowDialog(this);
+
+            init();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            HashSet<Int32> idsToDelete = new HashSet<int>();
+            foreach (DataGridViewCell cell in clientsDataGridView.SelectedCells)
+            {
+                idsToDelete.Add((Int32)clientsDataGridView.Rows[cell.RowIndex].Cells["id_client"].Value);
+            }
+
+            foreach (Int32 id in idsToDelete)
+            {
+                DatabaseManager.deleteIndividual(id);
+            }
+
+            init();
         }
     }
 }

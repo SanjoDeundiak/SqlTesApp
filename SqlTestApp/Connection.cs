@@ -32,7 +32,7 @@ namespace SqlTestApp
 
             foreach (var param in parameters)
             {
-                command.Parameters.AddWithValue(param.Key, param.Value);
+                command.Parameters.AddWithValue(param.Key, (object)param.Value ?? DBNull.Value);
             }
         }
 

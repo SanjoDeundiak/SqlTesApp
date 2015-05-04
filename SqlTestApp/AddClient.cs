@@ -19,7 +19,8 @@ namespace SqlTestApp
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            DatabaseManager.addClient(nameTextBox.Text, middleNameTextBox.Text, surnameTextBox.Text, dateOfBirthTextBox.Text, addressTextBox.Text);
+            DatabaseManager.addIndividual(Utils.ValidateString(nameTextBox.Text), Utils.ValidateString(middleNameTextBox.Text), Utils.ValidateString(surnameTextBox.Text),
+                dateOfBirthTextBox.Text, Utils.ValidateString(addressTextBox.Text));
             Close();
         }
     }
