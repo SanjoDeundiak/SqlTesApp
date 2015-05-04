@@ -41,10 +41,12 @@
             // 
             // serverNameTextBox
             // 
+            this.serverNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SqlTestApp.Properties.Settings.Default, "serverName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.serverNameTextBox.Location = new System.Drawing.Point(138, 12);
             this.serverNameTextBox.Name = "serverNameTextBox";
             this.serverNameTextBox.Size = new System.Drawing.Size(232, 20);
             this.serverNameTextBox.TabIndex = 0;
+            this.serverNameTextBox.Text = global::SqlTestApp.Properties.Settings.Default.serverName;
             // 
             // label1
             // 
@@ -66,10 +68,12 @@
             // 
             // loginTextBox
             // 
+            this.loginTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SqlTestApp.Properties.Settings.Default, "login", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.loginTextBox.Location = new System.Drawing.Point(166, 38);
             this.loginTextBox.Name = "loginTextBox";
             this.loginTextBox.Size = new System.Drawing.Size(204, 20);
             this.loginTextBox.TabIndex = 3;
+            this.loginTextBox.Text = global::SqlTestApp.Properties.Settings.Default.login;
             // 
             // label3
             // 
@@ -82,11 +86,13 @@
             // 
             // passwordTextBox
             // 
+            this.passwordTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SqlTestApp.Properties.Settings.Default, "password", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.passwordTextBox.Location = new System.Drawing.Point(166, 64);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(204, 20);
             this.passwordTextBox.TabIndex = 5;
+            this.passwordTextBox.Text = global::SqlTestApp.Properties.Settings.Default.password;
             // 
             // Connect
             // 

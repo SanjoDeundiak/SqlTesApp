@@ -20,6 +20,7 @@ namespace SqlTestApp
 
         private void Connect_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             try
             {
                 Connection.Connect(serverNameTextBox.Text, loginTextBox.Text, passwordTextBox.Text);
@@ -31,7 +32,8 @@ namespace SqlTestApp
             }
 
             Form form = new MainWindow();
-            Hide();
+            form.Closed += (_a, _b) => this.Close();
+            this.Hide();
             form.Show();
 
         }

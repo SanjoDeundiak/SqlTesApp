@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SqlTestApp
@@ -24,20 +25,10 @@ namespace SqlTestApp
             connection.Open();
         }
 
-        static public List<String[]> Test()
+        static public SqlDataReader Test()
         {
             SqlCommand command = new SqlCommand(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_CLIENT), connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            List<String[]> result = new List<String[]>();
-
-            while (reader.Read())
-            {
-                result.Add(new String[2]{reader[0].ToString(), reader[1].ToString()});
-            }
-
-            return result;
+            return command.ExecuteReader();
         }
 
     }

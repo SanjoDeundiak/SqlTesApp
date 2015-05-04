@@ -17,7 +17,7 @@ namespace SqlTestApp
 
         static PreparedStatements()
         {
-            selectStatements[(int)PreparedSelectStatement.SEL_CLIENT] = "SELECT id_client, surname FROM Individual";
+            selectStatements[(int)PreparedSelectStatement.SEL_CLIENT] = "SELECT id_client, name, middle_name, surname, date_of_birth, address FROM Individual";
         }
 
         static public String GetStatement(PreparedSelectStatement statement)
