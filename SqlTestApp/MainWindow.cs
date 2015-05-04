@@ -30,7 +30,7 @@ namespace SqlTestApp
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            AddClient form = new AddClient();
+            AddOrEditClient form = new AddOrEditClient();
             form.ShowDialog(this);
 
             init();
@@ -48,6 +48,27 @@ namespace SqlTestApp
             {
                 DatabaseManager.deleteIndividual(id);
             }
+
+            init();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            Individual individual = new Individual();
+            DataGridViewCell cell = clientsDataGridView.SelectedCells[0];
+
+            DataGridViewCellCollection rowCells = clientsDataGridView.Rows[cell.RowIndex].Cells;
+            individual.id = (Int32)rowCells["id_client"].Value;
+            individual.Name = rowCells["name"].Value.ToString();
+            individual.MiddleName = rowCells["middle_name"].Value.ToString();
+            individual.Surname = rowCells["surname"].Value.ToString();
+            System.Console.WriteLine(rowCells["date_of_birth"].ValueType);
+            DateTime dateOfBirth = (DateTime)rowCells["date_of_birth"].Value;
+            individual.DateOfBirth = dateOfBirth.ToShortDateString();
+            individual.Address = rowCells["address"].Value.ToString();
+
+            AddOrEditClient form = new AddOrEditClient(individual);
+            form.ShowDialog(this);
 
             init();
         }

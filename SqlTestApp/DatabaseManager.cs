@@ -28,17 +28,30 @@ namespace SqlTestApp
 
             return dt;
         }
-
-        static public void addIndividual(String name, String middleName, String surname, String dateOfBirth, String address)
+        
+        static public void addIndividual(Individual individual)
         {
-            Dictionary<String, String> parameters = new Dictionary<string,string>();
-            parameters["@name"] = name;
-            parameters["@middleName"] = middleName;
-            parameters["@surname"] = surname;
-            parameters["@dateOfBirth"] = dateOfBirth;
-            parameters["@address"] = address;
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@name"] = individual.Name;
+            parameters["@middleName"] = individual.MiddleName;
+            parameters["@surname"] = individual.Surname;
+            parameters["@dateOfBirth"] = individual.DateOfBirth;
+            parameters["@address"] = individual.Address;
 
             Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_INDIVIDUAL), parameters);
+        }
+
+        static public void updateIndividual(Individual individual)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = individual.id.ToString();
+            parameters["@name"] = individual.Name;
+            parameters["@middleName"] = individual.MiddleName;
+            parameters["@surname"] = individual.Surname;
+            parameters["@dateOfBirth"] = individual.DateOfBirth;
+            parameters["@address"] = individual.Address;
+
+            Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_INDIVIDUAL), parameters);
         }
 
         static public void deleteIndividual(Int32 id)

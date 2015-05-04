@@ -1,6 +1,6 @@
 ﻿namespace SqlTestApp
 {
-    partial class AddClient
+    partial class AddOrEditClient
     {
         /// <summary>
         /// Required designer variable.

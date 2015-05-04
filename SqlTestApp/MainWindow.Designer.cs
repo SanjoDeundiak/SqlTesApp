@@ -36,12 +36,13 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.addButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_client = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.middle_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateOfBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date_of_birth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -60,7 +61,7 @@
             this.name,
             this.middle_name,
             this.surname,
-            this.dateOfBirth,
+            this.date_of_birth,
             this.address});
             this.clientsDataGridView.Location = new System.Drawing.Point(12, 27);
             this.clientsDataGridView.Name = "clientsDataGridView";
@@ -109,7 +110,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(894, 539);
+            this.addButton.Location = new System.Drawing.Point(813, 538);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 3;
@@ -126,6 +127,16 @@
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(894, 538);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(75, 23);
+            this.editButton.TabIndex = 5;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // number
             // 
@@ -164,12 +175,12 @@
             this.surname.Name = "surname";
             this.surname.ReadOnly = true;
             // 
-            // dateOfBirth
+            // date_of_birth
             // 
-            this.dateOfBirth.DataPropertyName = "date_of_birth";
-            this.dateOfBirth.HeaderText = "Date of birth";
-            this.dateOfBirth.Name = "dateOfBirth";
-            this.dateOfBirth.ReadOnly = true;
+            this.date_of_birth.DataPropertyName = "date_of_birth";
+            this.date_of_birth.HeaderText = "Date of birth";
+            this.date_of_birth.Name = "date_of_birth";
+            this.date_of_birth.ReadOnly = true;
             // 
             // address
             // 
@@ -183,6 +194,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 587);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.statusStrip1);
@@ -211,12 +223,13 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_client;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn middle_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date_of_birth;
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
     }
 }
