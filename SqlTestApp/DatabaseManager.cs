@@ -29,7 +29,7 @@ namespace SqlTestApp
             return dt;
         }
         
-        static public void addIndividual(Individual individual)
+        static public int addIndividual(Individual individual)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters["@name"] = individual.Name;
@@ -38,10 +38,10 @@ namespace SqlTestApp
             parameters["@dateOfBirth"] = individual.DateOfBirth;
             parameters["@address"] = individual.Address;
 
-            Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_INDIVIDUAL), parameters);
+           return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_INDIVIDUAL), parameters);
         }
 
-        static public void updateIndividual(Individual individual)
+        static public int updateIndividual(Individual individual)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters["@id"] = individual.id.ToString();
@@ -51,15 +51,15 @@ namespace SqlTestApp
             parameters["@dateOfBirth"] = individual.DateOfBirth;
             parameters["@address"] = individual.Address;
 
-            Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_INDIVIDUAL), parameters);
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_INDIVIDUAL), parameters);
         }
 
-        static public void deleteIndividual(Int32 id)
+        static public int deleteIndividual(Int32 id)
         {
             Dictionary<String, String> parameters = new Dictionary<string, String>();
             parameters["@id"] = id.ToString();
 
-            Connection.executeStatement(PreparedStatements.GetStatement(PreparedDeleteStatement.DEL_INDIVIDUAL), parameters);
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedDeleteStatement.DEL_INDIVIDUAL), parameters);
         }
     }
 }

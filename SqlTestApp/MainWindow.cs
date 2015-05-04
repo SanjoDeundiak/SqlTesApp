@@ -38,6 +38,11 @@ namespace SqlTestApp
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            if (clientsDataGridView.SelectedCells.Count == 0) // Nothing to delete
+            {
+                return;
+            }
+
             HashSet<Int32> idsToDelete = new HashSet<int>();
             foreach (DataGridViewCell cell in clientsDataGridView.SelectedCells)
             {
@@ -54,10 +59,10 @@ namespace SqlTestApp
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            Individual individual = new Individual();
             DataGridViewCell cell = clientsDataGridView.SelectedCells[0];
-
             DataGridViewCellCollection rowCells = clientsDataGridView.Rows[cell.RowIndex].Cells;
+
+            Individual individual = new Individual();
             individual.id = (Int32)rowCells["id_client"].Value;
             individual.Name = rowCells["name"].Value.ToString();
             individual.MiddleName = rowCells["middle_name"].Value.ToString();

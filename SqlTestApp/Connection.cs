@@ -51,7 +51,11 @@ namespace SqlTestApp
 
             fillInParameters(command, parameters);
 
-            return command.ExecuteNonQuery();
+            int rowsAffected = 0;
+
+            rowsAffected = command.ExecuteNonQuery();
+
+            return rowsAffected;
         }
 
     }

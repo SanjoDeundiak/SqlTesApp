@@ -51,14 +51,23 @@ namespace SqlTestApp
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            if (id == 0) // Creating
+            try
             {
-                DatabaseManager.addIndividual(fillIndividual());
+                if (id == 0) // Creating
+                {
+                    DatabaseManager.addIndividual(fillIndividual());
+                }
+                else // Updating
+                {
+                    DatabaseManager.updateIndividual(fillIndividual());
+                }
             }
-            else // Updating
+            catch (Exception exc)
             {
-                DatabaseManager.updateIndividual(fillIndividual());
+                MessageBox.Show(this, exc.Message);
+                return;
             }
+
             Close();
         }
     }
