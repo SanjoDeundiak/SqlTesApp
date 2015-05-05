@@ -44,38 +44,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddOrEditClient.cs">
+    <Compile Include="Source\AddOrEditClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddOrEditClient.Designer.cs">
+    <Compile Include="Source\AddOrEditClient.Designer.cs">
       <DependentUpon>AddOrEditClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connection.cs" />
-    <Compile Include="ConnectionWindow.cs">
+    <Compile Include="Source\Connection.cs" />
+    <Compile Include="Source\ConnectionWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConnectionWindow.Designer.cs">
+    <Compile Include="Source\ConnectionWindow.Designer.cs">
       <DependentUpon>ConnectionWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseManager.cs" />
-    <Compile Include="Entities.cs" />
-    <Compile Include="MainWindow.cs">
+    <Compile Include="Source\DatabaseManager.cs" />
+    <Compile Include="Source\Entities.cs" />
+    <Compile Include="Source\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.cs">
+    <Compile Include="Source\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PreparedStatements.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Source\PreparedStatements.cs" />
+    <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="AddOrEditClient.resx">
+    <Compile Include="Source\Utils.cs" />
+    <EmbeddedResource Include="Source\AddOrEditClient.resx">
       <DependentUpon>AddOrEditClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConnectionWindow.resx">
+    <EmbeddedResource Include="Source\ConnectionWindow.resx">
       <DependentUpon>ConnectionWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.resx">
+    <EmbeddedResource Include="Source\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
