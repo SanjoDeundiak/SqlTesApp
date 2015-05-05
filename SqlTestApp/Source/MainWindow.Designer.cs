@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.clientsDataGridView = new System.Windows.Forms.DataGridView();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_client = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +55,8 @@
             this.clientsDataGridView.AllowUserToAddRows = false;
             this.clientsDataGridView.AllowUserToDeleteRows = false;
             this.clientsDataGridView.AllowUserToOrderColumns = true;
+            this.clientsDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.clientsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.clientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.clientsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.number,
@@ -65,6 +68,9 @@
             this.address});
             this.clientsDataGridView.Location = new System.Drawing.Point(12, 27);
             this.clientsDataGridView.Name = "clientsDataGridView";
+            this.clientsDataGridView.ReadOnly = true;
+            this.clientsDataGridView.ShowCellToolTips = false;
+            this.clientsDataGridView.ShowEditingIcon = false;
             this.clientsDataGridView.Size = new System.Drawing.Size(644, 350);
             this.clientsDataGridView.TabIndex = 0;
             // 
@@ -121,6 +127,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.databaseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -200,9 +207,12 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.clientsDataGridView);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
+            this.Text = "BD";
             ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
