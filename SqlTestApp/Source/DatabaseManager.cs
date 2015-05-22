@@ -12,7 +12,7 @@ namespace SqlTestApp
     {
         static public DataTable getIndividualClients()
         {
-            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_CLIENT));
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_IND_CLIENT));
 
             DataTable dt = new DataTable("");
 

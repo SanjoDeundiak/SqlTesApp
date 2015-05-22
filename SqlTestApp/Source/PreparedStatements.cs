@@ -8,7 +8,7 @@ namespace SqlTestApp
 {
     enum PreparedSelectStatement
     {
-        SEL_CLIENT,
+        SEL_IND_CLIENT,
         SIZE
     }
     enum PreparedInsertStatement
@@ -36,7 +36,7 @@ namespace SqlTestApp
         static PreparedStatements()
         {
             // Select statements here
-            selectStatements[(int)PreparedSelectStatement.SEL_CLIENT] = "SELECT id_client, name, middle_name, surname, date_of_birth, address FROM Individual";
+            selectStatements[(int)PreparedSelectStatement.SEL_IND_CLIENT] = "SELECT id_client, name, middle_name, surname, date_of_birth, address, time_of_registration FROM IndividualClient";
 
             // Insert statements here
             insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] = 
@@ -46,6 +46,7 @@ namespace SqlTestApp
             // Update statements here
             updateStatements[(int)PreparedUpdateStatement.UPD_INDIVIDUAL] =
                 "UPDATE Individual SET name = @name, middle_name = @middleName, surname = @surname, date_of_birth = @dateOfBirth, address = @address WHERE id_client = @id";
+
             // Delete statements here
             deleteStatements[(int)PreparedDeleteStatement.DEL_INDIVIDUAL] = "DELETE FROM Individual WHERE id_client = @id";
         }
