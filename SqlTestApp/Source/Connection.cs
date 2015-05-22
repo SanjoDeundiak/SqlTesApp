@@ -42,7 +42,19 @@ namespace SqlTestApp
 
             fillInParameters(command, parameters);
 
-            return command.ExecuteReader();
+            SqlDataReader res = null;
+
+            try
+            {
+                res = command.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+
+            return res;
         }
 
         static public int executeStatement(String statement, Dictionary<String, String> parameters = null)
@@ -53,7 +65,15 @@ namespace SqlTestApp
 
             int rowsAffected = 0;
 
-            rowsAffected = command.ExecuteNonQuery();
+            try
+            {
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
 
             return rowsAffected;
         }

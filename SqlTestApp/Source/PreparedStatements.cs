@@ -48,7 +48,7 @@ namespace SqlTestApp
                 "UPDATE Individual SET name = @name, middle_name = @middleName, surname = @surname, date_of_birth = @dateOfBirth, address = @address WHERE id_client = @id";
 
             // Delete statements here
-            deleteStatements[(int)PreparedDeleteStatement.DEL_INDIVIDUAL] = "DELETE FROM Individual WHERE id_client = @id";
+            deleteStatements[(int)PreparedDeleteStatement.DEL_INDIVIDUAL] = "DELETE FROM Client WHERE id_client = @id";
         }
 
         static public String GetStatement(PreparedSelectStatement statement)

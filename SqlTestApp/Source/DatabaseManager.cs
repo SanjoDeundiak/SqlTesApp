@@ -24,7 +24,8 @@ namespace SqlTestApp
             number.ColumnName = "number";
             dt.Columns.Add(number);
 
-            dt.Load(reader);
+            if (reader != null)
+                dt.Load(reader);
 
             return dt;
         }
