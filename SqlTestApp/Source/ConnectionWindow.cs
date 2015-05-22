@@ -35,7 +35,6 @@ namespace SqlTestApp
             form.Closed += (_a, _b) => this.Close();
             this.Hide();
             form.Show();
-
         }
 
         private void Cancel_Click(object sender, EventArgs e)

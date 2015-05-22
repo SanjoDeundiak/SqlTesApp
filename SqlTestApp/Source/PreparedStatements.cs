@@ -9,6 +9,7 @@ namespace SqlTestApp
     enum PreparedSelectStatement
     {
         SEL_IND_CLIENT,
+        SEL_LOG,
         SIZE
     }
     enum PreparedInsertStatement
@@ -37,6 +38,7 @@ namespace SqlTestApp
         {
             // Select statements here
             selectStatements[(int)PreparedSelectStatement.SEL_IND_CLIENT] = "SELECT id_client, name, middle_name, surname, date_of_birth, address, time_of_registration FROM IndividualClient";
+            selectStatements[(int)PreparedSelectStatement.SEL_LOG] = "SELECT * FROM IndividualLog";
 
             // Insert statements here
             insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] = 

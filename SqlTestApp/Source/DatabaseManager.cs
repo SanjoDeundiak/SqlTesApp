@@ -29,6 +29,26 @@ namespace SqlTestApp
 
             return dt;
         }
+
+        static public DataTable getLog()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_LOG));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
         
         static public int addIndividual(Individual individual)
         {

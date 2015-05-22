@@ -79,5 +79,11 @@ namespace SqlTestApp
 
             init();
         }
+
+        private void logToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new LogWindow();
+            form.ShowDialog();
+        }
     }
 }
