@@ -83,6 +83,30 @@ namespace SqlTestApp
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedDeleteStatement.DEL_INDIVIDUAL), parameters);
         }
 
+        static public PeriodicEvent getPeriodicEvent(Int16 eventId)
+        {
+            PeriodicEvent ev = new PeriodicEvent();
+
+            Dictionary<String, String> parameters = new Dictionary<string,string>();
+            parameters["@id_event"] = eventId.ToString();
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_PERIODIC_EVENT), parameters);
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+            {
+                dt.Load(reader);
+                var row = dt.Rows[0];
+                ev.id = Convert.ToInt16(row["id_event"]);
+                ev.Name = Convert.ToString(row["name"]);
+                ev.type = Convert.ToInt16(row["type"]);
+                ev.LessonTimes = Convert.ToString(row["LessonTimes"]);
+            }
+
+            return ev;
+        }
+
         static public DataTable getPeriodicEvents()
         {
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_PERIODIC_EVENTS));
@@ -115,6 +139,104 @@ namespace SqlTestApp
             return dt;
         }
 
+        static public DataTable getSportForEvent(Int16 eventId)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id_event"] = eventId.ToString();
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SPORT_FOR_EVENT), parameters);
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getTimesForEvent(Int16 eventId)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id_event"] = eventId.ToString();
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_TIME_FOR_EVENT), parameters);
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getSportNamesForKeys(List<Int16> fk_sports)
+        {
+            if (fk_sports.Count == 0)
+            {
+                DataColumn cl = new DataColumn("name");
+                DataTable DT = new DataTable();
+                DT.Columns.Add(cl);
+                return DT;
+            }
+
+            String statement = PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SPORT_NAMES_FOR_KEYS);
+            String list = string.Join(",", fk_sports);
+
+            statement = String.Format(statement, list);
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(statement);
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+                dt.Load(reader);
+            
+            return dt;
+        }
+        static public DataTable getTimes()
+        {            
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_TIMES));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+        static public DataTable getTimesForKeys(List<Int16> fk_times)
+        {
+            if (fk_times.Count == 0)
+            {
+                DataColumn cl = new DataColumn("time");
+                DataTable DT = new DataTable();
+                DT.Columns.Add(cl);
+                return DT;
+            }
+
+            String statement = PreparedStatements.GetStatement(PreparedSelectStatement.SEL_TIMES_FOR_KEYS);
+            String list = string.Join(",", fk_times);
+
+            statement = String.Format(statement, list);
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(statement);
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
         static public DataTable getSportNames()
         {
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SPORT_NAMES));
@@ -134,14 +256,44 @@ namespace SqlTestApp
 
             return dt;
         }
-
-        static public int addPeriodicEvent(String name, Int16 type)
+        static public int updatePeriodicEvent(Int16 eventId, Int16 type, String name)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = eventId.ToString();
+            parameters["@name"] = name;
+            parameters["@type"] = type.ToString();
+            
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_PERIODIC_EVENT), parameters);
+        }
+        static public DataTable addPeriodicEvent(String name, Int16 type)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters["@name"] = name;
             parameters["@type"] = type.ToString();
 
-            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_PERIODIC_EVENT), parameters);
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedInsertStatement.INS_PERIODIC_EVENT), parameters);
+
+            DataTable dt = new DataTable("");
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+        static public void setEventSports(Int16 eventId, List<Int16> fk_sports)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@event_id"] = eventId.ToString();
+            parameters["@list"] = String.Join(",", fk_sports);
+
+            Connection.executeStoredProcedure(PreparedStatements.GetStatement(StoredProcedure.PROC_UPDATE_SPORTS), parameters);
+        }
+        static public void setEventTimes(Int16 eventId, List<Int16> fk_times)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@event_id"] = eventId.ToString();
+            parameters["@list"] = String.Join(",", fk_times);
+
+            Connection.executeStoredProcedure(PreparedStatements.GetStatement(StoredProcedure.PROC_UPDATE_TIMES), parameters);
         }
     }
 }

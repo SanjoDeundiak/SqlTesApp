@@ -1,6 +1,6 @@
 ﻿namespace SqlTestApp
 {
-    partial class AddEvent
+    partial class AddOrEditEvent
     {
         /// <summary>
         /// Required designer variable.
@@ -35,8 +35,11 @@
             this.OKButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.sportTextBox = new System.Windows.Forms.TextBox();
+            this.addSportButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.timeTextBox = new System.Windows.Forms.TextBox();
+            this.addTimeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -74,7 +77,7 @@
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(271, 130);
+            this.OKButton.Location = new System.Drawing.Point(271, 142);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
             this.OKButton.TabIndex = 4;
@@ -85,7 +88,7 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(352, 130);
+            this.cancelButton.Location = new System.Drawing.Point(352, 142);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
@@ -101,32 +104,61 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Спорт";
             // 
-            // textBox1
+            // sportTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(166, 86);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 20);
-            this.textBox1.TabIndex = 7;
+            this.sportTextBox.Location = new System.Drawing.Point(166, 86);
+            this.sportTextBox.Name = "sportTextBox";
+            this.sportTextBox.Size = new System.Drawing.Size(232, 20);
+            this.sportTextBox.TabIndex = 7;
             // 
-            // button1
+            // addSportButton
             // 
-            this.button1.Location = new System.Drawing.Point(404, 84);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.addSportButton.Location = new System.Drawing.Point(404, 84);
+            this.addSportButton.Name = "addSportButton";
+            this.addSportButton.Size = new System.Drawing.Size(23, 23);
+            this.addSportButton.TabIndex = 8;
+            this.addSportButton.Text = "+";
+            this.addSportButton.UseVisualStyleBackColor = true;
+            this.addSportButton.Click += new System.EventHandler(this.addSportButton_Click);
             // 
-            // AddEvent
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Час";
+            // 
+            // timeTextBox
+            // 
+            this.timeTextBox.Location = new System.Drawing.Point(166, 115);
+            this.timeTextBox.Name = "timeTextBox";
+            this.timeTextBox.Size = new System.Drawing.Size(232, 20);
+            this.timeTextBox.TabIndex = 10;
+            // 
+            // addTimeButton
+            // 
+            this.addTimeButton.Location = new System.Drawing.Point(404, 113);
+            this.addTimeButton.Name = "addTimeButton";
+            this.addTimeButton.Size = new System.Drawing.Size(23, 23);
+            this.addTimeButton.TabIndex = 11;
+            this.addTimeButton.Text = "+";
+            this.addTimeButton.UseVisualStyleBackColor = true;
+            this.addTimeButton.Click += new System.EventHandler(this.addTimeButton_Click);
+            // 
+            // AddOrEditEvent
             // 
             this.AcceptButton = this.OKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(439, 178);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(439, 174);
+            this.Controls.Add(this.addTimeButton);
+            this.Controls.Add(this.timeTextBox);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.addSportButton);
+            this.Controls.Add(this.sportTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.OKButton);
@@ -134,7 +166,7 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "AddEvent";
+            this.Name = "AddOrEditEvent";
             this.Text = "AddEvent";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,7 +182,10 @@
         private System.Windows.Forms.Button OKButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox sportTextBox;
+        private System.Windows.Forms.Button addSportButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox timeTextBox;
+        private System.Windows.Forms.Button addTimeButton;
     }
 }

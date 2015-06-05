@@ -83,5 +83,21 @@ namespace SqlTestApp
             return rowsAffected;
         }
 
+        static public void executeStoredProcedure(String procedureName, Dictionary<String, String> parameters = null)
+        {
+            SqlCommand command = new SqlCommand(procedureName, connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            fillInParameters(command, parameters);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

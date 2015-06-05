@@ -47,7 +47,6 @@
             this.check});
             this.sportDataGridView.Location = new System.Drawing.Point(12, 12);
             this.sportDataGridView.Name = "sportDataGridView";
-            this.sportDataGridView.ReadOnly = true;
             this.sportDataGridView.RowHeadersVisible = false;
             this.sportDataGridView.Size = new System.Drawing.Size(502, 208);
             this.sportDataGridView.TabIndex = 0;
@@ -60,6 +59,7 @@
             this.OKButton.TabIndex = 1;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // number
             // 
@@ -67,7 +67,6 @@
             this.number.Frozen = true;
             this.number.HeaderText = "№";
             this.number.Name = "number";
-            this.number.ReadOnly = true;
             // 
             // name
             // 
@@ -75,18 +74,15 @@
             this.name.Frozen = true;
             this.name.HeaderText = "Спорт";
             this.name.Name = "name";
-            this.name.ReadOnly = true;
             // 
             // check
             // 
             this.check.DataPropertyName = "check";
-            this.check.FalseValue = "";
+            this.check.FalseValue = "false";
+            this.check.Frozen = true;
             this.check.HeaderText = "";
             this.check.Name = "check";
-            this.check.ReadOnly = true;
-            this.check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.check.TrueValue = "";
+            this.check.TrueValue = "true";
             // 
             // ChooseSport
             // 

@@ -31,14 +31,15 @@
             this.eventTabControl = new System.Windows.Forms.TabControl();
             this.periodicTab = new System.Windows.Forms.TabPage();
             this.periodicDataGridView = new System.Windows.Forms.DataGridView();
-            this.singleTab = new System.Windows.Forms.TabPage();
-            this.singleDataGridView = new System.Windows.Forms.DataGridView();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lessonTimes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.singleTab = new System.Windows.Forms.TabPage();
+            this.singleDataGridView = new System.Windows.Forms.DataGridView();
             this.addButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.eventTabControl.SuspendLayout();
             this.periodicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.periodicDataGridView)).BeginInit();
@@ -81,29 +82,12 @@
             this.sportName,
             this.lessonTimes});
             this.periodicDataGridView.Location = new System.Drawing.Point(6, 6);
+            this.periodicDataGridView.MultiSelect = false;
             this.periodicDataGridView.Name = "periodicDataGridView";
             this.periodicDataGridView.ReadOnly = true;
+            this.periodicDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.periodicDataGridView.Size = new System.Drawing.Size(801, 362);
             this.periodicDataGridView.TabIndex = 0;
-            // 
-            // singleTab
-            // 
-            this.singleTab.Controls.Add(this.singleDataGridView);
-            this.singleTab.Location = new System.Drawing.Point(4, 22);
-            this.singleTab.Name = "singleTab";
-            this.singleTab.Padding = new System.Windows.Forms.Padding(3);
-            this.singleTab.Size = new System.Drawing.Size(791, 374);
-            this.singleTab.TabIndex = 1;
-            this.singleTab.Text = "Одноразові події";
-            this.singleTab.UseVisualStyleBackColor = true;
-            // 
-            // singleDataGridView
-            // 
-            this.singleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.singleDataGridView.Location = new System.Drawing.Point(3, 6);
-            this.singleDataGridView.Name = "singleDataGridView";
-            this.singleDataGridView.Size = new System.Drawing.Size(782, 362);
-            this.singleDataGridView.TabIndex = 0;
             // 
             // number
             // 
@@ -145,9 +129,28 @@
             this.lessonTimes.ReadOnly = true;
             this.lessonTimes.Width = 400;
             // 
+            // singleTab
+            // 
+            this.singleTab.Controls.Add(this.singleDataGridView);
+            this.singleTab.Location = new System.Drawing.Point(4, 22);
+            this.singleTab.Name = "singleTab";
+            this.singleTab.Padding = new System.Windows.Forms.Padding(3);
+            this.singleTab.Size = new System.Drawing.Size(814, 374);
+            this.singleTab.TabIndex = 1;
+            this.singleTab.Text = "Одноразові події";
+            this.singleTab.UseVisualStyleBackColor = true;
+            // 
+            // singleDataGridView
+            // 
+            this.singleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.singleDataGridView.Location = new System.Drawing.Point(3, 6);
+            this.singleDataGridView.Name = "singleDataGridView";
+            this.singleDataGridView.Size = new System.Drawing.Size(782, 362);
+            this.singleDataGridView.TabIndex = 0;
+            // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(755, 418);
+            this.addButton.Location = new System.Drawing.Point(680, 418);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 1;
@@ -155,11 +158,22 @@
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(761, 418);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(75, 23);
+            this.editButton.TabIndex = 2;
+            this.editButton.Text = "Редагувати";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
             // PlanWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 455);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.eventTabControl);
             this.Name = "PlanWindow";
@@ -186,5 +200,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sportName;
         private System.Windows.Forms.DataGridViewTextBoxColumn lessonTimes;
         private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button editButton;
     }
 }

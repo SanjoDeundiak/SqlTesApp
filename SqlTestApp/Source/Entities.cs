@@ -41,4 +41,27 @@ namespace SqlTestApp
             set { address = Utils.ValidateString(value); }
         }
     }
+
+    public class Event
+    {
+        public Int16 id;
+
+        private String name;
+        public String Name
+        {
+            get { return name; }
+            set { name = Utils.ValidateString(value); }
+        }
+    }
+
+    public class PeriodicEvent : Event
+    {
+        public Int16 type;
+        private String lessonTimes;
+        public String LessonTimes
+        {
+            get { return lessonTimes; }
+            set { lessonTimes = Utils.ValidateString(value); }
+        }
+    }
 }
