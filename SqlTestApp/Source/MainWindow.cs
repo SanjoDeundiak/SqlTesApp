@@ -28,15 +28,31 @@ namespace SqlTestApp
         private void reconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new ConnectionWindow();
-            form.Closed += (_a, _b) => this.Close();
+            form.Closed += (_a, _b) => this.Show();
             this.Hide();
             form.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void planButton_Click(object sender, EventArgs e)
         {
             Form form = new PlanWindow();
-            form.Closed += (_a, _b) => this.Close();
+            form.Closed += (_a, _b) => this.Show();
+            this.Hide();
+            form.Show();
+        }
+
+        private void sportButton_Click(object sender, EventArgs e)
+        {
+            Form form = new SportWindow();
+            form.Closed += (_a, _b) => this.Show();
+            this.Hide();
+            form.Show();
+        }
+
+        private void timeButton_Click(object sender, EventArgs e)
+        {
+            Form form = new Time();
+            form.Closed += (_a, _b) => this.Show();
             this.Hide();
             form.Show();
         }

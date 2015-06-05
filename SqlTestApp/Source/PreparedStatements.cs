@@ -25,13 +25,15 @@ namespace SqlTestApp
         SEL_SPORT_NAMES_FOR_KEYS,
         SEL_TIMES_FOR_KEYS,
         SEL_TIMES,
+        SEL_WEEK_DAYS,
         SIZE
     }
     enum PreparedInsertStatement
     {
         INS_INDIVIDUAL,
         INS_PERIODIC_EVENT,
-        INS_PERIODIC_EVENT_SPORT,
+        INS_SPORT,
+        INS_TIME,
         SIZE
     }
     enum PreparedUpdateStatement
@@ -71,7 +73,7 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_TIMES_FOR_KEYS] = "SELECT time, id_lesson FROM TimesForLessons WHERE id_lesson in ({0})";
             selectStatements[(int)PreparedSelectStatement.SEL_TIMES] = "SELECT time, id_lesson FROM TimesForLessons";
             selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENT] = @"SELECT id_event, name, type, LessonTimes FROM PeriodicEventView WHERE id_event = @id_event";
-
+            selectStatements[(int)PreparedSelectStatement.SEL_WEEK_DAYS] = @"SELECT day_of_week, name_of_day FROM DayOfWeekName";
 
             // Insert statements here
             insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] = 
@@ -80,6 +82,9 @@ namespace SqlTestApp
             insertStatements[(int)PreparedInsertStatement.INS_PERIODIC_EVENT] =
                 @"INSERT INTO Event(name) OUTPUT INSERTED.id_event VALUES(@name);
                   INSERT INTO Periodic_event (id_event, type) VALUES(IDENT_CURRENT('Event'), @type)";
+            insertStatements[(int)PreparedInsertStatement.INS_SPORT] = @"INSERT INTO Sport(name) VALUES(@name)";
+            insertStatements[(int)PreparedInsertStatement.INS_TIME] = @"INSERT INTO Time_Lesson(day_of_week, start_time, duration) VALUES(@day, @start, @duration)";
+
 
             // Update statements here
             updateStatements[(int)PreparedUpdateStatement.UPD_INDIVIDUAL] =

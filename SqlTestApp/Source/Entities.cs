@@ -64,4 +64,11 @@ namespace SqlTestApp
             set { lessonTimes = Utils.ValidateString(value); }
         }
     }
+
+    public class TimeEntity
+    {
+        public Int16 dayOfWeek;
+        public TimeSpan start;
+        public TimeSpan duration;
+    }
 }

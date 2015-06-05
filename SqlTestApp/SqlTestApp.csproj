@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\AddTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddTime.Designer.cs">
+      <DependentUpon>AddTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\AddSport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddSport.Designer.cs">
+      <DependentUpon>AddSport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\AddOrEditEvent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,8 +124,26 @@
     <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Utils.cs" />
+    <Compile Include="Source\SportWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\SportWindow.Designer.cs">
+      <DependentUpon>SportWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Time.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Time.Designer.cs">
+      <DependentUpon>Time.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Source\AddTime.resx">
+      <DependentUpon>AddTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\AddOrEditEvent.resx">
       <DependentUpon>AddOrEditEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\AddSport.resx">
+      <DependentUpon>AddSport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\ChooseSport.resx">
       <DependentUpon>ChooseSport.cs</DependentUpon>
@@ -143,6 +173,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\SportWindow.resx">
+      <DependentUpon>SportWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Time.resx">
+      <DependentUpon>Time.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

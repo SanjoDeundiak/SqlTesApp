@@ -10,6 +10,17 @@ namespace SqlTestApp
 {
     static class DatabaseManager
     {
+        static public DataTable getWeekDayNames()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_WEEK_DAYS));
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
         static public DataTable getIndividualClients()
         {
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_IND_CLIENT));
@@ -49,7 +60,28 @@ namespace SqlTestApp
 
             return dt;
         }
+
+        static public int addSport(String name)
+        {
+            if (name == null || name == "")
+                return -1;
+
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@name"] = name;
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_SPORT), parameters);
+        }
         
+        static public int addTime(TimeEntity time)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@day"] = time.dayOfWeek.ToString();
+            parameters["@start"] = time.start.ToString();
+            parameters["@duration"] = time.duration.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_TIME), parameters);
+        }
+
         static public int addIndividual(Individual individual)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
