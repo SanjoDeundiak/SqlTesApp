@@ -1,6 +1,6 @@
 ﻿namespace SqlTestApp
 {
-    partial class MainWindow
+    partial class MainClientWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainClientWindow));
             this.clientsDataGridView = new System.Windows.Forms.DataGridView();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_client = new System.Windows.Forms.DataGridViewTextBoxColumn();

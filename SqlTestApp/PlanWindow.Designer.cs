@@ -1,0 +1,190 @@
+﻿namespace SqlTestApp
+{
+    partial class PlanWindow
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.eventTabControl = new System.Windows.Forms.TabControl();
+            this.periodicTab = new System.Windows.Forms.TabPage();
+            this.periodicDataGridView = new System.Windows.Forms.DataGridView();
+            this.singleTab = new System.Windows.Forms.TabPage();
+            this.singleDataGridView = new System.Windows.Forms.DataGridView();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lessonTimes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addButton = new System.Windows.Forms.Button();
+            this.eventTabControl.SuspendLayout();
+            this.periodicTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.periodicDataGridView)).BeginInit();
+            this.singleTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.singleDataGridView)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // eventTabControl
+            // 
+            this.eventTabControl.Controls.Add(this.periodicTab);
+            this.eventTabControl.Controls.Add(this.singleTab);
+            this.eventTabControl.Location = new System.Drawing.Point(12, 12);
+            this.eventTabControl.Name = "eventTabControl";
+            this.eventTabControl.SelectedIndex = 0;
+            this.eventTabControl.Size = new System.Drawing.Size(822, 400);
+            this.eventTabControl.TabIndex = 0;
+            // 
+            // periodicTab
+            // 
+            this.periodicTab.Controls.Add(this.periodicDataGridView);
+            this.periodicTab.Location = new System.Drawing.Point(4, 22);
+            this.periodicTab.Name = "periodicTab";
+            this.periodicTab.Padding = new System.Windows.Forms.Padding(3);
+            this.periodicTab.Size = new System.Drawing.Size(814, 374);
+            this.periodicTab.TabIndex = 0;
+            this.periodicTab.Text = "Періодичні події";
+            this.periodicTab.UseVisualStyleBackColor = true;
+            // 
+            // periodicDataGridView
+            // 
+            this.periodicDataGridView.AllowUserToAddRows = false;
+            this.periodicDataGridView.AllowUserToDeleteRows = false;
+            this.periodicDataGridView.AllowUserToOrderColumns = true;
+            this.periodicDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.periodicDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.periodicDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.number,
+            this.name,
+            this.TypeName,
+            this.sportName,
+            this.lessonTimes});
+            this.periodicDataGridView.Location = new System.Drawing.Point(6, 6);
+            this.periodicDataGridView.Name = "periodicDataGridView";
+            this.periodicDataGridView.ReadOnly = true;
+            this.periodicDataGridView.Size = new System.Drawing.Size(801, 362);
+            this.periodicDataGridView.TabIndex = 0;
+            // 
+            // singleTab
+            // 
+            this.singleTab.Controls.Add(this.singleDataGridView);
+            this.singleTab.Location = new System.Drawing.Point(4, 22);
+            this.singleTab.Name = "singleTab";
+            this.singleTab.Padding = new System.Windows.Forms.Padding(3);
+            this.singleTab.Size = new System.Drawing.Size(791, 374);
+            this.singleTab.TabIndex = 1;
+            this.singleTab.Text = "Одноразові події";
+            this.singleTab.UseVisualStyleBackColor = true;
+            // 
+            // singleDataGridView
+            // 
+            this.singleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.singleDataGridView.Location = new System.Drawing.Point(3, 6);
+            this.singleDataGridView.Name = "singleDataGridView";
+            this.singleDataGridView.Size = new System.Drawing.Size(782, 362);
+            this.singleDataGridView.TabIndex = 0;
+            // 
+            // number
+            // 
+            this.number.DataPropertyName = "number";
+            this.number.HeaderText = "№";
+            this.number.Name = "number";
+            this.number.ReadOnly = true;
+            this.number.Width = 43;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Назва події";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 200;
+            // 
+            // TypeName
+            // 
+            this.TypeName.DataPropertyName = "type_name";
+            this.TypeName.HeaderText = "Тип";
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
+            this.TypeName.Width = 51;
+            // 
+            // sportName
+            // 
+            this.sportName.DataPropertyName = "sport_names";
+            this.sportName.HeaderText = "Спорт";
+            this.sportName.Name = "sportName";
+            this.sportName.ReadOnly = true;
+            this.sportName.Width = 62;
+            // 
+            // lessonTimes
+            // 
+            this.lessonTimes.DataPropertyName = "LessonTimes";
+            this.lessonTimes.HeaderText = "Часи занять";
+            this.lessonTimes.Name = "lessonTimes";
+            this.lessonTimes.ReadOnly = true;
+            this.lessonTimes.Width = 400;
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(755, 418);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 1;
+            this.addButton.Text = "Додати";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // PlanWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(848, 455);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.eventTabControl);
+            this.Name = "PlanWindow";
+            this.Text = "PlanWindow";
+            this.eventTabControl.ResumeLayout(false);
+            this.periodicTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.periodicDataGridView)).EndInit();
+            this.singleTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.singleDataGridView)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TabControl eventTabControl;
+        private System.Windows.Forms.TabPage periodicTab;
+        private System.Windows.Forms.TabPage singleTab;
+        private System.Windows.Forms.DataGridView periodicDataGridView;
+        private System.Windows.Forms.DataGridView singleDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sportName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lessonTimes;
+        private System.Windows.Forms.Button addButton;
+    }
+}

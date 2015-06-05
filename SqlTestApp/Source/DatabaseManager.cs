@@ -82,5 +82,66 @@ namespace SqlTestApp
 
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedDeleteStatement.DEL_INDIVIDUAL), parameters);
         }
+
+        static public DataTable getPeriodicEvents()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_PERIODIC_EVENTS));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getEventTypes()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_EVENT_TYPES));
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getSportNames()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SPORT_NAMES));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public int addPeriodicEvent(String name, Int16 type)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@name"] = name;
+            parameters["@type"] = type.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_PERIODIC_EVENT), parameters);
+        }
     }
 }

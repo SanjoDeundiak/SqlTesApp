@@ -36,6 +36,11 @@ namespace SqlTestApp
             }
         }
 
+        static public void Disconnect()
+        {
+            connection.Close();
+        }
+
         static public SqlDataReader executeStatementAndGetReader(String statement, Dictionary<String, String> parameters = null)
         {
             SqlCommand command = new SqlCommand(statement, connection);

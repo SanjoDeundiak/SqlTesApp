@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SqlTestApp
 {
-    public partial class MainWindow : Form
+    public partial class MainClientWindow : Form
     {
-        public MainWindow()
+        public MainClientWindow()
         {
             InitializeComponent();
 
