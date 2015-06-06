@@ -19,18 +19,29 @@ namespace SqlTestApp
             periodicDataGridView.Columns["lessonTimes"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             periodicDataGridView.AutoGenerateColumns = false;
 
+            singleDataGridView.AutoGenerateColumns = false;
+
             init();
         }
 
         private void init()
         {
             periodicDataGridView.DataSource = DatabaseManager.getPeriodicEvents();
+            singleDataGridView.DataSource = DatabaseManager.getSingleEvents(!checkBox1.Checked);
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Form form = new AddOrEditEvent();
-            form.ShowDialog(this);
+            if (eventTabControl.SelectedTab == periodicTab)
+            {
+                Form form = new AddOrEditEvent();
+                form.ShowDialog(this);
+            }
+            else
+            {
+                Form form = new AddOrEditSingleEvent();
+                form.ShowDialog(this);
+            }
             init();
         }
 
@@ -46,8 +57,25 @@ namespace SqlTestApp
                 DataTable dt = (DataTable)periodicDataGridView.DataSource;
                 AddOrEditEvent form = new AddOrEditEvent(Convert.ToInt16(dt.Rows[index]["id_event"]));
                 form.ShowDialog(this);
-                init();
             }
+            else
+            {
+                var sel = singleDataGridView.SelectedRows;
+                if (sel.Count == 0 || sel.Count > 1)
+                    return;
+
+                var index = sel[0].Index;
+                DataTable dt = (DataTable)singleDataGridView.DataSource;
+                AddOrEditSingleEvent form = new AddOrEditSingleEvent(Convert.ToInt16(dt.Rows[index]["id_event"]));
+                form.ShowDialog(this);
+            }
+
+            init();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            init();
         }
     }
 }

@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\AddOrEditSingleEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddOrEditSingleEvent.Designer.cs">
+      <DependentUpon>AddOrEditSingleEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\AddRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </Compile>
     <EmbeddedResource Include="Source\AddRequest.resx">
       <DependentUpon>AddRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\AddOrEditSingleEvent.resx">
+      <DependentUpon>AddOrEditSingleEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Requests.resx">
       <DependentUpon>Requests.cs</DependentUpon>

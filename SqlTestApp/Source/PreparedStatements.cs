@@ -29,12 +29,15 @@ namespace SqlTestApp
         SEL_EQUIPMENT,
         SEL_ACCEPTED_REQUEST,
         SEL_NOTACCEPTED_REQUEST,
+        SEL_SINGLE_EVENTS,
+        SEL_SINGLE_EVENT,
         SIZE
     }
     enum PreparedInsertStatement
     {
         INS_INDIVIDUAL,
         INS_PERIODIC_EVENT,
+        INS_SINGLE_EVENT,
         INS_SPORT,
         INS_TIME,
         INS_EQUIPMENT,
@@ -45,6 +48,7 @@ namespace SqlTestApp
     {
         UPD_INDIVIDUAL,
         UPD_PERIODIC_EVENT,
+        UPD_SINGLE_EVENT,
         UPD_ACCEPT_REQUEST,
         UPD_REJECT_REQUEST,
         SIZE
@@ -72,6 +76,12 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_IND_CLIENT] = "SELECT id_client, name, middle_name, surname, date_of_birth, address, time_of_registration FROM IndividualClient";
             selectStatements[(int)PreparedSelectStatement.SEL_LOG] = "SELECT * FROM IndividualLog";
             selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENTS] = "SELECT name, sport_names, id_event, LessonTimes, type_name FROM PeriodicEventView";
+            selectStatements[(int)PreparedSelectStatement.SEL_SINGLE_EVENTS] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time 
+                                                                                FROM Event INNER JOIN Single_event ON Event.id_event = Single_event.id_event
+                                                                                WHERE passed = @passed";
+            selectStatements[(int)PreparedSelectStatement.SEL_SINGLE_EVENT] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time
+                                                                                FROM Event INNER JOIN Single_event ON Event.id_event = Single_event.id_event
+                                                                                WHERE Event.id_event = @id";
             selectStatements[(int)PreparedSelectStatement.SEL_EVENT_TYPES] = "SELECT type, name FROM PeriodicEventTypeNames";
             selectStatements[(int)PreparedSelectStatement.SEL_SPORT_NAMES] = "SELECT id_sport, name FROM Sport";
             selectStatements[(int)PreparedSelectStatement.SEL_SPORT_FOR_EVENT] = "SELECT fk_sport FROM Event_Sport WHERE fk_event = @id_event";
@@ -96,6 +106,9 @@ namespace SqlTestApp
             insertStatements[(int)PreparedInsertStatement.INS_PERIODIC_EVENT] =
                 @"INSERT INTO Event(name) OUTPUT INSERTED.id_event VALUES(@name);
                   INSERT INTO Periodic_event (id_event, type) VALUES(IDENT_CURRENT('Event'), @type)";
+            insertStatements[(int)PreparedInsertStatement.INS_SINGLE_EVENT] =
+                @"INSERT INTO Event(name) OUTPUT INSERTED.id_event VALUES(@name);
+                  INSERT INTO Single_event (id_event, start_time, end_time) VALUES(IDENT_CURRENT('Event'), @start, @end)";
             insertStatements[(int)PreparedInsertStatement.INS_SPORT] = @"INSERT INTO Sport(name) VALUES(@name)";
             insertStatements[(int)PreparedInsertStatement.INS_TIME] = @"INSERT INTO Time_Lesson(day_of_week, start_time, duration) VALUES(@day, @start, @duration)";
             insertStatements[(int)PreparedInsertStatement.INS_EQUIPMENT] = @"INSERT INTO EQUIPMENT(name) VALUES(@name)";
@@ -106,6 +119,9 @@ namespace SqlTestApp
                 "UPDATE Individual SET name = @name, middle_name = @middleName, surname = @surname, date_of_birth = CONVERT(date, @dateOfBirth, 104), address = @address WHERE id_client = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_PERIODIC_EVENT] =
                 @"UPDATE Periodic_event SET type = @type WHERE id_event = @id;
+                  UPDATE Event SET name = @name WHERE id_event = @id";
+            updateStatements[(int)PreparedUpdateStatement.UPD_SINGLE_EVENT] =
+                @"UPDATE Single_event SET start_time = @start, end_time = @end WHERE id_event = @id;
                   UPDATE Event SET name = @name WHERE id_event = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_ACCEPT_REQUEST] = "UPDATE Request SET accepted = 1 WHERE id_request = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_REJECT_REQUEST] = "UPDATE Request SET accepted = 0 WHERE id_request = @id";

@@ -65,6 +65,12 @@ namespace SqlTestApp
         }
     }
 
+    public class SingleEvent : Event
+    {
+        public DateTime start;
+        public DateTime end;
+    }
+
     public class TimeEntity
     {
         public Int16 dayOfWeek;

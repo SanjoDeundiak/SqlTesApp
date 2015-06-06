@@ -40,6 +40,11 @@
             this.singleDataGridView = new System.Windows.Forms.DataGridView();
             this.addButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventTabControl.SuspendLayout();
             this.periodicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.periodicDataGridView)).BeginInit();
@@ -142,10 +147,18 @@
             // 
             // singleDataGridView
             // 
+            this.singleDataGridView.AllowUserToAddRows = false;
+            this.singleDataGridView.AllowUserToDeleteRows = false;
             this.singleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.singleDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.number1,
+            this.name1,
+            this.startTime,
+            this.endTime});
             this.singleDataGridView.Location = new System.Drawing.Point(3, 6);
             this.singleDataGridView.Name = "singleDataGridView";
-            this.singleDataGridView.Size = new System.Drawing.Size(782, 362);
+            this.singleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.singleDataGridView.Size = new System.Drawing.Size(805, 362);
             this.singleDataGridView.TabIndex = 0;
             // 
             // addButton
@@ -168,11 +181,52 @@
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(603, 422);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(71, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Майбутні";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // number1
+            // 
+            this.number1.DataPropertyName = "number";
+            this.number1.Frozen = true;
+            this.number1.HeaderText = "№";
+            this.number1.Name = "number1";
+            this.number1.ReadOnly = true;
+            // 
+            // name1
+            // 
+            this.name1.DataPropertyName = "name";
+            this.name1.HeaderText = "Назва";
+            this.name1.Name = "name1";
+            this.name1.ReadOnly = true;
+            // 
+            // startTime
+            // 
+            this.startTime.DataPropertyName = "start_time";
+            this.startTime.HeaderText = "Початок";
+            this.startTime.Name = "startTime";
+            this.startTime.ReadOnly = true;
+            // 
+            // endTime
+            // 
+            this.endTime.DataPropertyName = "end_time";
+            this.endTime.HeaderText = "Кінець";
+            this.endTime.Name = "endTime";
+            this.endTime.ReadOnly = true;
+            // 
             // PlanWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 455);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.eventTabControl);
@@ -184,6 +238,7 @@
             this.singleTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.singleDataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -201,5 +256,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lessonTimes;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endTime;
     }
 }

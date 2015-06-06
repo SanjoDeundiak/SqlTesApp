@@ -195,6 +195,53 @@ namespace SqlTestApp
             return dt;
         }
 
+        static public DataTable getSingleEvents(bool passed)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@passed"] = passed ? "1" : "0";
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SINGLE_EVENTS), parameters);
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public SingleEvent getSingleEvent(Int16 eventId)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = eventId.ToString();
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SINGLE_EVENT), parameters);
+
+            SingleEvent ev = new SingleEvent();
+
+            DataTable dt = new DataTable("");
+
+            if (reader != null)
+            {
+                dt.Load(reader);
+                var row = dt.Rows[0];
+                ev.Name = Convert.ToString(row["name"]);
+                ev.id = Convert.ToInt16(row["id_event"]);
+                ev.start = Convert.ToDateTime(row["start_time"]);
+                ev.end = Convert.ToDateTime(row["end_time"]);
+            }
+
+            return ev;
+        }
+
         static public DataTable getAcceptedRequests()
         {
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_ACCEPTED_REQUEST));
@@ -393,6 +440,16 @@ namespace SqlTestApp
             
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_PERIODIC_EVENT), parameters);
         }
+        static public int updateSingleEvent(Int16 eventId, String name, DateTime start, DateTime end)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = eventId.ToString();
+            parameters["@name"] = name;
+            parameters["@start"] = start.ToString();
+            parameters["@end"] = end.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_SINGLE_EVENT), parameters);
+        }
         static public DataTable addPeriodicEvent(String name, Int16 type)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
@@ -400,6 +457,21 @@ namespace SqlTestApp
             parameters["@type"] = type.ToString();
 
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedInsertStatement.INS_PERIODIC_EVENT), parameters);
+
+            DataTable dt = new DataTable("");
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+        static public DataTable addSingleEvent(String name, DateTime start, DateTime end)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@name"] = name;
+            parameters["@start"] = start.ToString();
+            parameters["@end"] = end.ToString();
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedInsertStatement.INS_SINGLE_EVENT), parameters);
 
             DataTable dt = new DataTable("");
             if (reader != null)
