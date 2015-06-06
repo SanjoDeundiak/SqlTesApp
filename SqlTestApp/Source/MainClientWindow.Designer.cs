@@ -70,6 +70,7 @@
             this.address,
             this.time_of_registration});
             this.clientsDataGridView.Location = new System.Drawing.Point(12, 27);
+            this.clientsDataGridView.MultiSelect = false;
             this.clientsDataGridView.Name = "clientsDataGridView";
             this.clientsDataGridView.ReadOnly = true;
             this.clientsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

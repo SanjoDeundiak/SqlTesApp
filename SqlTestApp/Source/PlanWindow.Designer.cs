@@ -156,6 +156,7 @@
             this.startTime,
             this.endTime});
             this.singleDataGridView.Location = new System.Drawing.Point(3, 6);
+            this.singleDataGridView.MultiSelect = false;
             this.singleDataGridView.Name = "singleDataGridView";
             this.singleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.singleDataGridView.Size = new System.Drawing.Size(805, 362);

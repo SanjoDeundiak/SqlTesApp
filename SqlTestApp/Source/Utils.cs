@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
+using System.Windows.Forms;
 
 namespace SqlTestApp
 {
@@ -48,6 +51,13 @@ namespace SqlTestApp
 
                 return minutes.Copy();
             }
+        }
+
+        static public String ParseTime(DateTimePicker picker)
+        {
+            String res = picker.Value.Year.ToString() + "-" + picker.Value.Month.ToString() + "-" + picker.Value.Day.ToString() + " "
+                + picker.Value.Hour.ToString() + ":" + picker.Value.Minute.ToString() + ":00";
+            return res;
         }
     }
 }

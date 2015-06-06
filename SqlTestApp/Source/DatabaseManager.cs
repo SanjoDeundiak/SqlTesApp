@@ -440,13 +440,13 @@ namespace SqlTestApp
             
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_PERIODIC_EVENT), parameters);
         }
-        static public int updateSingleEvent(Int16 eventId, String name, DateTime start, DateTime end)
+        static public int updateSingleEvent(Int16 eventId, String name, String start, String end)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters["@id"] = eventId.ToString();
             parameters["@name"] = name;
-            parameters["@start"] = start.ToString();
-            parameters["@end"] = end.ToString();
+            parameters["@start"] = start;
+            parameters["@end"] = end;
 
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_SINGLE_EVENT), parameters);
         }
@@ -464,12 +464,12 @@ namespace SqlTestApp
 
             return dt;
         }
-        static public DataTable addSingleEvent(String name, DateTime start, DateTime end)
+        static public DataTable addSingleEvent(String name, String start, String end)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters["@name"] = name;
-            parameters["@start"] = start.ToString();
-            parameters["@end"] = end.ToString();
+            parameters["@start"] = start;
+            parameters["@end"] = end;
 
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedInsertStatement.INS_SINGLE_EVENT), parameters);
 

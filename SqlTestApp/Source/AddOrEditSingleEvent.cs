@@ -20,10 +20,10 @@ namespace SqlTestApp
             this.eventId = eventId;
 
             startDateTimePicker.Format = DateTimePickerFormat.Custom;
-            startDateTimePicker.CustomFormat = "dd.MM.yyyy hh:mm";
+            startDateTimePicker.CustomFormat = "dd.MM.yyyy HH:mm";
 
             endDateTimePicker.Format = DateTimePickerFormat.Custom;
-            endDateTimePicker.CustomFormat = "dd.MM.yyyy hh:mm";
+            endDateTimePicker.CustomFormat = "dd.MM.yyyy HH:mm";
 
             init();
         }
@@ -35,8 +35,8 @@ namespace SqlTestApp
                 SingleEvent ev = DatabaseManager.getSingleEvent(eventId);
                 
                 nameTextBox.Text = ev.Name;
-                this.startDateTimePicker.Value = ev.start;
-                this.endDateTimePicker.Value = ev.end;
+                startDateTimePicker.Value = ev.start;
+                endDateTimePicker.Value = ev.end;
             }
         }
 
@@ -49,12 +49,12 @@ namespace SqlTestApp
 
             if (eventId == 0)
             {
-                DataTable dt = DatabaseManager.addSingleEvent(name, startDateTimePicker.Value, endDateTimePicker.Value);
+                DataTable dt = DatabaseManager.addSingleEvent(name, Utils.ParseTime(startDateTimePicker), Utils.ParseTime(endDateTimePicker));
                 eventId = Convert.ToInt16(dt.Rows[0]["id_event"]);
             }
             else
             {
-                DatabaseManager.updateSingleEvent(eventId, name, startDateTimePicker.Value, endDateTimePicker.Value);
+                DatabaseManager.updateSingleEvent(eventId, name, Utils.ParseTime(startDateTimePicker), Utils.ParseTime(endDateTimePicker));
             }
 
             this.Close();

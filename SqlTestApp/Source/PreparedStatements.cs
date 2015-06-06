@@ -92,10 +92,10 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENT] = @"SELECT id_event, name, type, LessonTimes FROM PeriodicEventView WHERE id_event = @id_event";
             selectStatements[(int)PreparedSelectStatement.SEL_WEEK_DAYS] = @"SELECT day_of_week, name_of_day FROM DayOfWeekName";
             selectStatements[(int)PreparedSelectStatement.SEL_EQUIPMENT] = @"SELECT id_equipment, name FROM Equipment";
-            selectStatements[(int)PreparedSelectStatement.SEL_ACCEPTED_REQUEST] = @"SELECT id_request, id_client, Event.name as event_name, IndividualClient.name as client_name, surname
+            selectStatements[(int)PreparedSelectStatement.SEL_ACCEPTED_REQUEST] = @"SELECT id_request, id_client, registration_date, Event.name as event_name, IndividualClient.name as client_name, surname
                                                                            FROM Request INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
                                                                            INNER JOIN Event ON Event.id_event = Request.fk_event WHERE accepted = 1";
-            selectStatements[(int)PreparedSelectStatement.SEL_NOTACCEPTED_REQUEST] = @"SELECT id_request, id_client, Event.name as event_name, IndividualClient.name as client_name, surname
+            selectStatements[(int)PreparedSelectStatement.SEL_NOTACCEPTED_REQUEST] = @"SELECT id_request, id_client, registration_date, Event.name as event_name, IndividualClient.name as client_name, surname
                                                                            FROM Request INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
                                                                            INNER JOIN Event ON Event.id_event = Request.fk_event WHERE accepted = 0";
 
@@ -108,7 +108,7 @@ namespace SqlTestApp
                   INSERT INTO Periodic_event (id_event, type) VALUES(IDENT_CURRENT('Event'), @type)";
             insertStatements[(int)PreparedInsertStatement.INS_SINGLE_EVENT] =
                 @"INSERT INTO Event(name) OUTPUT INSERTED.id_event VALUES(@name);
-                  INSERT INTO Single_event (id_event, start_time, end_time) VALUES(IDENT_CURRENT('Event'), @start, @end)";
+                  INSERT INTO Single_event (id_event, start_time, end_time) VALUES(IDENT_CURRENT('Event'), CONVERT(datetime, @start, 120), CONVERT(datetime, @end, 120))";
             insertStatements[(int)PreparedInsertStatement.INS_SPORT] = @"INSERT INTO Sport(name) VALUES(@name)";
             insertStatements[(int)PreparedInsertStatement.INS_TIME] = @"INSERT INTO Time_Lesson(day_of_week, start_time, duration) VALUES(@day, @start, @duration)";
             insertStatements[(int)PreparedInsertStatement.INS_EQUIPMENT] = @"INSERT INTO EQUIPMENT(name) VALUES(@name)";
@@ -121,7 +121,7 @@ namespace SqlTestApp
                 @"UPDATE Periodic_event SET type = @type WHERE id_event = @id;
                   UPDATE Event SET name = @name WHERE id_event = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_SINGLE_EVENT] =
-                @"UPDATE Single_event SET start_time = @start, end_time = @end WHERE id_event = @id;
+                @"UPDATE Single_event SET start_time = CONVERT(datetime, @start, 120), end_time = CONVERT(datetime, @end, 120) WHERE id_event = @id;
                   UPDATE Event SET name = @name WHERE id_event = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_ACCEPT_REQUEST] = "UPDATE Request SET accepted = 1 WHERE id_request = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_REJECT_REQUEST] = "UPDATE Request SET accepted = 0 WHERE id_request = @id";

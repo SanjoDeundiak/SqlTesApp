@@ -37,6 +37,7 @@
             this.timeButton = new System.Windows.Forms.Button();
             this.buttonEquipment = new System.Windows.Forms.Button();
             this.requestsButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,11 +126,21 @@
             this.requestsButton.UseVisualStyleBackColor = true;
             this.requestsButton.Click += new System.EventHandler(this.requestsButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(828, 354);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(204, 96);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 552);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.requestsButton);
             this.Controls.Add(this.buttonEquipment);
             this.Controls.Add(this.timeButton);
@@ -159,5 +170,6 @@
         private System.Windows.Forms.Button timeButton;
         private System.Windows.Forms.Button buttonEquipment;
         private System.Windows.Forms.Button requestsButton;
+        private System.Windows.Forms.Button button1;
     }
 }

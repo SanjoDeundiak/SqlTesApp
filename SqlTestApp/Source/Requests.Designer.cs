@@ -34,15 +34,17 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.notAcceptedDataGridView = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.client_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.number1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.event_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.client_name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surname1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addButton = new System.Windows.Forms.Button();
+            this.time1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.acceptedDataGridView)).BeginInit();
@@ -82,7 +84,8 @@
             this.number,
             this.eventName,
             this.client_name,
-            this.surname});
+            this.surname,
+            this.time});
             this.acceptedDataGridView.Location = new System.Drawing.Point(3, 0);
             this.acceptedDataGridView.Name = "acceptedDataGridView";
             this.acceptedDataGridView.ReadOnly = true;
@@ -111,7 +114,8 @@
             this.number1,
             this.event_name,
             this.client_name1,
-            this.surname1});
+            this.surname1,
+            this.time1});
             this.notAcceptedDataGridView.Location = new System.Drawing.Point(3, 0);
             this.notAcceptedDataGridView.Name = "notAcceptedDataGridView";
             this.notAcceptedDataGridView.ReadOnly = true;
@@ -129,6 +133,16 @@
             this.button1.Text = "Задовільнити";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(673, 360);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 3;
+            this.addButton.Text = "Додати";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // number
             // 
@@ -158,6 +172,13 @@
             this.surname.Name = "surname";
             this.surname.ReadOnly = true;
             // 
+            // time
+            // 
+            this.time.DataPropertyName = "registration_date";
+            this.time.HeaderText = "Дата";
+            this.time.Name = "time";
+            this.time.ReadOnly = true;
+            // 
             // number1
             // 
             this.number1.DataPropertyName = "number";
@@ -186,15 +207,12 @@
             this.surname1.Name = "surname1";
             this.surname1.ReadOnly = true;
             // 
-            // addButton
+            // time1
             // 
-            this.addButton.Location = new System.Drawing.Point(673, 360);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 3;
-            this.addButton.Text = "Додати";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.time1.DataPropertyName = "registration_date";
+            this.time1.HeaderText = "Дата";
+            this.time1.Name = "time1";
+            this.time1.ReadOnly = true;
             // 
             // Requests
             // 
@@ -223,15 +241,17 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView notAcceptedDataGridView;
+        private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridViewTextBoxColumn eventName;
         private System.Windows.Forms.DataGridViewTextBoxColumn client_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn surname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn time;
         private System.Windows.Forms.DataGridViewTextBoxColumn number1;
         private System.Windows.Forms.DataGridViewTextBoxColumn event_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn client_name1;
         private System.Windows.Forms.DataGridViewTextBoxColumn surname1;
-        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn time1;
 
     }
 }
