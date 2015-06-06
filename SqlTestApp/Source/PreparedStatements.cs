@@ -31,6 +31,8 @@ namespace SqlTestApp
         SEL_NOTACCEPTED_REQUEST,
         SEL_SINGLE_EVENTS,
         SEL_SINGLE_EVENT,
+        SEL_EQUIPMENT_ALL_REQUESTS,
+        SEL_EQUIPMENT_ACCEPTED_REQUESTS,
         SIZE
     }
     enum PreparedInsertStatement
@@ -42,6 +44,7 @@ namespace SqlTestApp
         INS_TIME,
         INS_EQUIPMENT,
         INS_REQUEST,
+        INS_EQUIPMENT_REQUEST,
         SIZE
     }
     enum PreparedUpdateStatement
@@ -98,6 +101,17 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_NOTACCEPTED_REQUEST] = @"SELECT id_request, id_client, registration_date, Event.name as event_name, IndividualClient.name as client_name, surname
                                                                            FROM Request INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
                                                                            INNER JOIN Event ON Event.id_event = Request.fk_event WHERE accepted = 0";
+            selectStatements[(int)PreparedSelectStatement.SEL_EQUIPMENT_ALL_REQUESTS] = @"SELECT start_time, end_time, fk_equipment, quantity, Request.id_request, id_client, registration_date, Event.name as event_name, IndividualClient.name as client_name, surname, accepted
+                                                                           FROM Request INNER JOIN Document_on_equipment ON Request.id_request = Document_on_equipment.id_request
+                                                                           INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
+                                                                           LEFT JOIN Single_event ON Single_event.id_event = Request.fk_event
+                                                                           LEFT JOIN Event on Single_event.id_event = Event.id_event";
+            selectStatements[(int)PreparedSelectStatement.SEL_EQUIPMENT_ACCEPTED_REQUESTS] = @"SELECT start_time, end_time, fk_equipment, quantity, Request.id_request, id_client, registration_date, Event.name as event_name, IndividualClient.name as client_name, surname, accepted
+                                                                           FROM Request INNER JOIN Document_on_equipment ON Request.id_request = Document_on_equipment.id_request
+                                                                           INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
+                                                                           LEFT JOIN Single_event ON Single_event.id_event = Request.fk_event
+                                                                           LEFT JOIN Event on Single_event.id_event = Event.id_event WHERE accepted = 1";
+            
 
             // Insert statements here
             insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] =
@@ -113,6 +127,9 @@ namespace SqlTestApp
             insertStatements[(int)PreparedInsertStatement.INS_TIME] = @"INSERT INTO Time_Lesson(day_of_week, start_time, duration) VALUES(@day, @start, @duration)";
             insertStatements[(int)PreparedInsertStatement.INS_EQUIPMENT] = @"INSERT INTO EQUIPMENT(name) VALUES(@name)";
             insertStatements[(int)PreparedInsertStatement.INS_REQUEST] = @"INSERT INTO Request(fk_event, fk_client, accepted, registration_date) VALUES(@eventId, @clientId, 0, CURRENT_TIMESTAMP)";
+            insertStatements[(int)PreparedInsertStatement.INS_EQUIPMENT_REQUEST] =
+                @"INSERT INTO Request(fk_event, fk_client, accepted, registration_date) VALUES(@eventId, @clientId, 0, CURRENT_TIMESTAMP)
+                  INSERT INTO Document_on_equipment(id_request, fk_equipment, quantity) VALUES(IDENT_CURRENT('Request'), @equipmentId, @quantity)";            
 
             // Update statements here
             updateStatements[(int)PreparedUpdateStatement.UPD_INDIVIDUAL] =

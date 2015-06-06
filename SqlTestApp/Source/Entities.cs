@@ -77,4 +77,10 @@ namespace SqlTestApp
         public TimeSpan start;
         public TimeSpan duration;
     }
+
+    public class EquipmentRequest
+    {
+        public Int16 id_request;
+        public Int16 fk_event;
+    }
 }

@@ -102,6 +102,17 @@ namespace SqlTestApp
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_REQUEST), parameters);
         }
 
+        static public int addEquipmentRequest(Int16 clientId, Int16 eventId, Int16 equipmentId, Int16 quantity)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@clientId"] = clientId.ToString();
+            parameters["@eventId"] = (eventId == 0 ? DBNull.Value.ToString()  : eventId.ToString());
+            parameters["@equipmentId"] = equipmentId.ToString();
+            parameters["@quantity"] = quantity.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_EQUIPMENT_REQUEST), parameters);
+        }
+
         static public int acceptRequest(Int16 requestId)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
@@ -240,6 +251,46 @@ namespace SqlTestApp
             }
 
             return ev;
+        }
+
+        static public DataTable getEquipmentAcceptedRequests()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_EQUIPMENT_ACCEPTED_REQUESTS));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getEquipmentAllRequests()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_EQUIPMENT_ALL_REQUESTS));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
         }
 
         static public DataTable getAcceptedRequests()

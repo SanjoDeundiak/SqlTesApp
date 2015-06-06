@@ -77,5 +77,13 @@ namespace SqlTestApp
             this.Hide();
             form.Show();
         }
+
+        private void equipmentRequestsButton_Click(object sender, EventArgs e)
+        {
+            Form form = new EquipmentRequests();
+            form.Closed += (_a, _b) => this.Show();
+            this.Hide();
+            form.Show();
+        }
     }
 }
