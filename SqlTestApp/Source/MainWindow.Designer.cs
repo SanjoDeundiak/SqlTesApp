@@ -43,7 +43,7 @@
             // 
             // clientsButton
             // 
-            this.clientsButton.Location = new System.Drawing.Point(828, 48);
+            this.clientsButton.Location = new System.Drawing.Point(12, 190);
             this.clientsButton.Name = "clientsButton";
             this.clientsButton.Size = new System.Drawing.Size(204, 96);
             this.clientsButton.TabIndex = 0;
@@ -57,7 +57,7 @@
             this.базаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1044, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(754, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,7 +88,7 @@
             // 
             // sportButton
             // 
-            this.sportButton.Location = new System.Drawing.Point(12, 252);
+            this.sportButton.Location = new System.Drawing.Point(533, 150);
             this.sportButton.Name = "sportButton";
             this.sportButton.Size = new System.Drawing.Size(204, 96);
             this.sportButton.TabIndex = 3;
@@ -98,7 +98,7 @@
             // 
             // timeButton
             // 
-            this.timeButton.Location = new System.Drawing.Point(12, 150);
+            this.timeButton.Location = new System.Drawing.Point(222, 48);
             this.timeButton.Name = "timeButton";
             this.timeButton.Size = new System.Drawing.Size(204, 96);
             this.timeButton.TabIndex = 4;
@@ -108,7 +108,7 @@
             // 
             // buttonEquipment
             // 
-            this.buttonEquipment.Location = new System.Drawing.Point(828, 150);
+            this.buttonEquipment.Location = new System.Drawing.Point(533, 48);
             this.buttonEquipment.Name = "buttonEquipment";
             this.buttonEquipment.Size = new System.Drawing.Size(204, 96);
             this.buttonEquipment.TabIndex = 5;
@@ -118,17 +118,17 @@
             // 
             // requestsButton
             // 
-            this.requestsButton.Location = new System.Drawing.Point(828, 252);
+            this.requestsButton.Location = new System.Drawing.Point(12, 354);
             this.requestsButton.Name = "requestsButton";
             this.requestsButton.Size = new System.Drawing.Size(204, 96);
             this.requestsButton.TabIndex = 6;
-            this.requestsButton.Text = "Заявки";
+            this.requestsButton.Text = "Заявки на події";
             this.requestsButton.UseVisualStyleBackColor = true;
             this.requestsButton.Click += new System.EventHandler(this.requestsButton_Click);
             // 
             // equipmentRequestsButton
             // 
-            this.equipmentRequestsButton.Location = new System.Drawing.Point(828, 354);
+            this.equipmentRequestsButton.Location = new System.Drawing.Point(222, 354);
             this.equipmentRequestsButton.Name = "equipmentRequestsButton";
             this.equipmentRequestsButton.Size = new System.Drawing.Size(204, 96);
             this.equipmentRequestsButton.TabIndex = 7;
@@ -140,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 552);
+            this.ClientSize = new System.Drawing.Size(754, 469);
             this.Controls.Add(this.equipmentRequestsButton);
             this.Controls.Add(this.requestsButton);
             this.Controls.Add(this.buttonEquipment);
