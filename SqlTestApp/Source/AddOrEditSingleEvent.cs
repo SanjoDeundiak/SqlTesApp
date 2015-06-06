@@ -20,10 +20,10 @@ namespace SqlTestApp
             this.eventId = eventId;
 
             startDateTimePicker.Format = DateTimePickerFormat.Custom;
-            startDateTimePicker.CustomFormat = "dd MM yyyy hh mm";
+            startDateTimePicker.CustomFormat = "dd.MM.yyyy hh:mm";
 
             endDateTimePicker.Format = DateTimePickerFormat.Custom;
-            endDateTimePicker.CustomFormat = "dd MM yyyy hh mm";
+            endDateTimePicker.CustomFormat = "dd.MM.yyyy hh:mm";
 
             init();
         }

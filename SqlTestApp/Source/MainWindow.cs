@@ -20,7 +20,7 @@ namespace SqlTestApp
         private void clientsButton_Click(object sender, EventArgs e)
         {
             Form form = new MainClientWindow();
-            form.Closed += (_a, _b) => this.Close();
+            form.Closed += (_a, _b) => this.Show();
             this.Hide();
             form.Show();
         }
