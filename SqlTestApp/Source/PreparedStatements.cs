@@ -27,6 +27,8 @@ namespace SqlTestApp
         SEL_TIMES,
         SEL_WEEK_DAYS,
         SEL_EQUIPMENT,
+        SEL_ACCEPTED_REQUEST,
+        SEL_NOTACCEPTED_REQUEST,
         SIZE
     }
     enum PreparedInsertStatement
@@ -36,12 +38,15 @@ namespace SqlTestApp
         INS_SPORT,
         INS_TIME,
         INS_EQUIPMENT,
+        INS_REQUEST,
         SIZE
     }
     enum PreparedUpdateStatement
     {
         UPD_INDIVIDUAL,
         UPD_PERIODIC_EVENT,
+        UPD_ACCEPT_REQUEST,
+        UPD_REJECT_REQUEST,
         SIZE
     }
     enum PreparedDeleteStatement
@@ -77,6 +82,12 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENT] = @"SELECT id_event, name, type, LessonTimes FROM PeriodicEventView WHERE id_event = @id_event";
             selectStatements[(int)PreparedSelectStatement.SEL_WEEK_DAYS] = @"SELECT day_of_week, name_of_day FROM DayOfWeekName";
             selectStatements[(int)PreparedSelectStatement.SEL_EQUIPMENT] = @"SELECT id_equipment, name FROM Equipment";
+            selectStatements[(int)PreparedSelectStatement.SEL_ACCEPTED_REQUEST] = @"SELECT id_request, id_client, Event.name as event_name, IndividualClient.name as client_name, surname
+                                                                           FROM Request INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
+                                                                           INNER JOIN Event ON Event.id_event = Request.fk_event WHERE accepted = 1";
+            selectStatements[(int)PreparedSelectStatement.SEL_NOTACCEPTED_REQUEST] = @"SELECT id_request, id_client, Event.name as event_name, IndividualClient.name as client_name, surname
+                                                                           FROM Request INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
+                                                                           INNER JOIN Event ON Event.id_event = Request.fk_event WHERE accepted = 0";
 
             // Insert statements here
             insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] =
@@ -88,6 +99,7 @@ namespace SqlTestApp
             insertStatements[(int)PreparedInsertStatement.INS_SPORT] = @"INSERT INTO Sport(name) VALUES(@name)";
             insertStatements[(int)PreparedInsertStatement.INS_TIME] = @"INSERT INTO Time_Lesson(day_of_week, start_time, duration) VALUES(@day, @start, @duration)";
             insertStatements[(int)PreparedInsertStatement.INS_EQUIPMENT] = @"INSERT INTO EQUIPMENT(name) VALUES(@name)";
+            insertStatements[(int)PreparedInsertStatement.INS_REQUEST] = @"INSERT INTO Request(fk_event, fk_client, accepted, registration_date) VALUES(@eventId, @clientId, 0, CURRENT_TIMESTAMP)";
 
             // Update statements here
             updateStatements[(int)PreparedUpdateStatement.UPD_INDIVIDUAL] =
@@ -95,6 +107,8 @@ namespace SqlTestApp
             updateStatements[(int)PreparedUpdateStatement.UPD_PERIODIC_EVENT] =
                 @"UPDATE Periodic_event SET type = @type WHERE id_event = @id;
                   UPDATE Event SET name = @name WHERE id_event = @id";
+            updateStatements[(int)PreparedUpdateStatement.UPD_ACCEPT_REQUEST] = "UPDATE Request SET accepted = 1 WHERE id_request = @id";
+            updateStatements[(int)PreparedUpdateStatement.UPD_REJECT_REQUEST] = "UPDATE Request SET accepted = 0 WHERE id_request = @id";
 
             // Delete statements here
             deleteStatements[(int)PreparedDeleteStatement.DEL_INDIVIDUAL] = "DELETE FROM Client WHERE id_client = @id";

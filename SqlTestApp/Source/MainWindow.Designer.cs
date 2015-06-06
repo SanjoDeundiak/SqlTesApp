@@ -36,6 +36,7 @@
             this.sportButton = new System.Windows.Forms.Button();
             this.timeButton = new System.Windows.Forms.Button();
             this.buttonEquipment = new System.Windows.Forms.Button();
+            this.requestsButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,11 +115,22 @@
             this.buttonEquipment.UseVisualStyleBackColor = true;
             this.buttonEquipment.Click += new System.EventHandler(this.buttonEquipment_Click);
             // 
+            // requestsButton
+            // 
+            this.requestsButton.Location = new System.Drawing.Point(828, 252);
+            this.requestsButton.Name = "requestsButton";
+            this.requestsButton.Size = new System.Drawing.Size(204, 96);
+            this.requestsButton.TabIndex = 6;
+            this.requestsButton.Text = "Заявки";
+            this.requestsButton.UseVisualStyleBackColor = true;
+            this.requestsButton.Click += new System.EventHandler(this.requestsButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 552);
+            this.Controls.Add(this.requestsButton);
             this.Controls.Add(this.buttonEquipment);
             this.Controls.Add(this.timeButton);
             this.Controls.Add(this.sportButton);
@@ -128,6 +140,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "MainWindow";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -145,5 +158,6 @@
         private System.Windows.Forms.Button sportButton;
         private System.Windows.Forms.Button timeButton;
         private System.Windows.Forms.Button buttonEquipment;
+        private System.Windows.Forms.Button requestsButton;
     }
 }

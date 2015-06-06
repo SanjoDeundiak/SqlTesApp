@@ -64,5 +64,18 @@ namespace SqlTestApp
             this.Hide();
             form.Show();
         }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void requestsButton_Click(object sender, EventArgs e)
+        {
+            Form form = new Requests();
+            form.Closed += (_a, _b) => this.Show();
+            this.Hide();
+            form.Show();
+        }
     }
 }

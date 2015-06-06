@@ -93,6 +93,31 @@ namespace SqlTestApp
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_TIME), parameters);
         }
 
+        static public int addRequest(Int16 clientId, Int16 eventId)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@clientId"] = clientId.ToString();
+            parameters["@eventId"] = eventId.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_REQUEST), parameters);
+        }
+
+        static public int acceptRequest(Int16 requestId)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = requestId.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_ACCEPT_REQUEST), parameters);
+        }
+
+        static public int rejectRequest(Int16 requestId)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = requestId.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_REJECT_REQUEST), parameters);
+        }
+
         static public int addIndividual(Individual individual)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
@@ -153,6 +178,46 @@ namespace SqlTestApp
         static public DataTable getPeriodicEvents()
         {
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_PERIODIC_EVENTS));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getAcceptedRequests()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_ACCEPTED_REQUEST));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getNotAcceptedRequests()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_NOTACCEPTED_REQUEST));
 
             DataTable dt = new DataTable("");
 

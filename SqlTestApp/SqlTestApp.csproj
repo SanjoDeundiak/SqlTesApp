@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\AddRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddRequest.Designer.cs">
+      <DependentUpon>AddRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Requests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Requests.Designer.cs">
+      <DependentUpon>Requests.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\AddEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +160,12 @@
     <Compile Include="Source\Time.Designer.cs">
       <DependentUpon>Time.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Source\AddRequest.resx">
+      <DependentUpon>AddRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Requests.resx">
+      <DependentUpon>Requests.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\AddEquipment.resx">
       <DependentUpon>AddEquipment.cs</DependentUpon>
     </EmbeddedResource>
