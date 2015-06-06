@@ -71,6 +71,17 @@ namespace SqlTestApp
 
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_SPORT), parameters);
         }
+
+        static public int addEquipment(String name)
+        {
+            if (name == null || name == "")
+                return -1;
+
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@name"] = name;
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_EQUIPMENT), parameters);
+        }
         
         static public int addTime(TimeEntity time)
         {
@@ -142,6 +153,26 @@ namespace SqlTestApp
         static public DataTable getPeriodicEvents()
         {
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_PERIODIC_EVENTS));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getEquipment()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_EQUIPMENT));
 
             DataTable dt = new DataTable("");
 

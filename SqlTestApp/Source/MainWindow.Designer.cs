@@ -35,6 +35,7 @@
             this.planButton = new System.Windows.Forms.Button();
             this.sportButton = new System.Windows.Forms.Button();
             this.timeButton = new System.Windows.Forms.Button();
+            this.buttonEquipment = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,11 +104,22 @@
             this.timeButton.UseVisualStyleBackColor = true;
             this.timeButton.Click += new System.EventHandler(this.timeButton_Click);
             // 
+            // buttonEquipment
+            // 
+            this.buttonEquipment.Location = new System.Drawing.Point(828, 150);
+            this.buttonEquipment.Name = "buttonEquipment";
+            this.buttonEquipment.Size = new System.Drawing.Size(204, 96);
+            this.buttonEquipment.TabIndex = 5;
+            this.buttonEquipment.Text = "Спорядження";
+            this.buttonEquipment.UseVisualStyleBackColor = true;
+            this.buttonEquipment.Click += new System.EventHandler(this.buttonEquipment_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 552);
+            this.Controls.Add(this.buttonEquipment);
             this.Controls.Add(this.timeButton);
             this.Controls.Add(this.sportButton);
             this.Controls.Add(this.planButton);
@@ -132,5 +144,6 @@
         private System.Windows.Forms.Button planButton;
         private System.Windows.Forms.Button sportButton;
         private System.Windows.Forms.Button timeButton;
+        private System.Windows.Forms.Button buttonEquipment;
     }
 }

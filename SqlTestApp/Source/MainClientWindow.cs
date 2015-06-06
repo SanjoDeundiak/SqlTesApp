@@ -67,6 +67,7 @@ namespace SqlTestApp
             individual.Name = rowCells["name"].Value.ToString();
             individual.MiddleName = rowCells["middle_name"].Value.ToString();
             individual.Surname = rowCells["surname"].Value.ToString();
+            individual.Address = rowCells["address"].Value.ToString();
 
             if( !(rowCells["date_of_birth"].Value is System.DBNull))
             {

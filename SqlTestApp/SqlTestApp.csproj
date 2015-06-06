@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\AddEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddEquipment.Designer.cs">
+      <DependentUpon>AddEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\AddTime.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,12 @@
     </Compile>
     <Compile Include="Source\ChooseTime.Designer.cs">
       <DependentUpon>ChooseTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Equipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Equipment.Designer.cs">
+      <DependentUpon>Equipment.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\LogWindow.cs">
       <SubType>Form</SubType>
@@ -136,6 +148,9 @@
     <Compile Include="Source\Time.Designer.cs">
       <DependentUpon>Time.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Source\AddEquipment.resx">
+      <DependentUpon>AddEquipment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\AddTime.resx">
       <DependentUpon>AddTime.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\ChooseTime.resx">
       <DependentUpon>ChooseTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Equipment.resx">
+      <DependentUpon>Equipment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\LogWindow.resx">
       <DependentUpon>LogWindow.cs</DependentUpon>

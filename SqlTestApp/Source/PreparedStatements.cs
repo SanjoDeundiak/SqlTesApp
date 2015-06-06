@@ -26,6 +26,7 @@ namespace SqlTestApp
         SEL_TIMES_FOR_KEYS,
         SEL_TIMES,
         SEL_WEEK_DAYS,
+        SEL_EQUIPMENT,
         SIZE
     }
     enum PreparedInsertStatement
@@ -34,6 +35,7 @@ namespace SqlTestApp
         INS_PERIODIC_EVENT,
         INS_SPORT,
         INS_TIME,
+        INS_EQUIPMENT,
         SIZE
     }
     enum PreparedUpdateStatement
@@ -74,21 +76,22 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_TIMES] = "SELECT time, id_lesson FROM TimesForLessons";
             selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENT] = @"SELECT id_event, name, type, LessonTimes FROM PeriodicEventView WHERE id_event = @id_event";
             selectStatements[(int)PreparedSelectStatement.SEL_WEEK_DAYS] = @"SELECT day_of_week, name_of_day FROM DayOfWeekName";
+            selectStatements[(int)PreparedSelectStatement.SEL_EQUIPMENT] = @"SELECT id_equipment, name FROM Equipment";
 
             // Insert statements here
-            insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] = 
+            insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] =
                 @"INSERT INTO Client (time_of_registration) VALUES(CURRENT_TIMESTAMP);
-                  INSERT INTO Individual (id_client, name, middle_name, surname, date_of_birth, address) VALUES(IDENT_CURRENT('Client'), @name, @middleName, @surname, @dateOfBirth, @address)";
+                  INSERT INTO Individual (id_client, name, middle_name, surname, date_of_birth, address) VALUES(IDENT_CURRENT('Client'), @name, @middleName, @surname, CONVERT(date, @dateOfBirth, 104), @address)";
             insertStatements[(int)PreparedInsertStatement.INS_PERIODIC_EVENT] =
                 @"INSERT INTO Event(name) OUTPUT INSERTED.id_event VALUES(@name);
                   INSERT INTO Periodic_event (id_event, type) VALUES(IDENT_CURRENT('Event'), @type)";
             insertStatements[(int)PreparedInsertStatement.INS_SPORT] = @"INSERT INTO Sport(name) VALUES(@name)";
             insertStatements[(int)PreparedInsertStatement.INS_TIME] = @"INSERT INTO Time_Lesson(day_of_week, start_time, duration) VALUES(@day, @start, @duration)";
-
+            insertStatements[(int)PreparedInsertStatement.INS_EQUIPMENT] = @"INSERT INTO EQUIPMENT(name) VALUES(@name)";
 
             // Update statements here
             updateStatements[(int)PreparedUpdateStatement.UPD_INDIVIDUAL] =
-                "UPDATE Individual SET name = @name, middle_name = @middleName, surname = @surname, date_of_birth = @dateOfBirth, address = @address WHERE id_client = @id";
+                "UPDATE Individual SET name = @name, middle_name = @middleName, surname = @surname, date_of_birth = CONVERT(date, @dateOfBirth, 104), address = @address WHERE id_client = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_PERIODIC_EVENT] =
                 @"UPDATE Periodic_event SET type = @type WHERE id_event = @id;
                   UPDATE Event SET name = @name WHERE id_event = @id";
