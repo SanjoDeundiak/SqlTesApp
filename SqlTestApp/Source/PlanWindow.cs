@@ -21,6 +21,8 @@ namespace SqlTestApp
 
             singleDataGridView.AutoGenerateColumns = false;
 
+            checkBox1.Visible = false;
+
             init();
         }
 
@@ -76,6 +78,23 @@ namespace SqlTestApp
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             init();
+        }
+
+        private void eventTabControl_TabIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eventTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (eventTabControl.SelectedIndex == 0)
+            {
+                checkBox1.Visible = false;
+            }
+            else
+            {
+                checkBox1.Visible = true;
+            }
         }
     }
 }

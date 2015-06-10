@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace SqlTestApp
 {
@@ -76,6 +77,11 @@ namespace SqlTestApp
         {
             if (name == null || name == "")
                 return -1;
+
+            if (name.Length > 40)
+            {
+                name = name.Substring(0, 40);
+            }
 
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters["@name"] = name;
@@ -201,7 +207,10 @@ namespace SqlTestApp
             dt.Columns.Add(number);
 
             if (reader != null)
+            {
                 dt.Load(reader);
+                reader.Close();
+            }
 
             return dt;
         }
@@ -209,9 +218,9 @@ namespace SqlTestApp
         static public DataTable getSingleEvents(bool passed)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
-            parameters["@passed"] = passed ? "1" : "0";
 
-            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SINGLE_EVENTS), parameters);
+            String statement = passed ? PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SINGLE_EVENTS) : PreparedStatements.GetStatement(PreparedSelectStatement.SEL_NOT_PASSED_SINGLE_EVENTS);
+            SqlDataReader reader = Connection.executeStatementAndGetReader(statement);
 
             DataTable dt = new DataTable("");
 
@@ -499,7 +508,7 @@ namespace SqlTestApp
             parameters["@start"] = start;
             parameters["@end"] = end;
 
-            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_SINGLE_EVENT), parameters);
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_SINGLE_EVENT), parameters);;
         }
         static public DataTable addPeriodicEvent(String name, Int16 type)
         {
@@ -526,7 +535,17 @@ namespace SqlTestApp
 
             DataTable dt = new DataTable("");
             if (reader != null)
-                dt.Load(reader);
+            {
+                try
+                {
+                    dt.Load(reader);
+                }
+                catch (Exception ex)
+                {
+                    reader.Close();
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
             return dt;
         }

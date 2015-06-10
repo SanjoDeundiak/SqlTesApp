@@ -30,6 +30,7 @@ namespace SqlTestApp
         SEL_ACCEPTED_REQUEST,
         SEL_NOTACCEPTED_REQUEST,
         SEL_SINGLE_EVENTS,
+        SEL_NOT_PASSED_SINGLE_EVENTS,
         SEL_SINGLE_EVENT,
         SEL_EQUIPMENT_ALL_REQUESTS,
         SEL_EQUIPMENT_ACCEPTED_REQUESTS,
@@ -80,8 +81,10 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_LOG] = "SELECT * FROM IndividualLog";
             selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENTS] = "SELECT name, sport_names, id_event, LessonTimes, type_name FROM PeriodicEventView";
             selectStatements[(int)PreparedSelectStatement.SEL_SINGLE_EVENTS] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time 
+                                                                                FROM Event INNER JOIN Single_event ON Event.id_event = Single_event.id_event";
+            selectStatements[(int)PreparedSelectStatement.SEL_NOT_PASSED_SINGLE_EVENTS] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time 
                                                                                 FROM Event INNER JOIN Single_event ON Event.id_event = Single_event.id_event
-                                                                                WHERE passed = @passed";
+                                                                                WHERE passed = 0";
             selectStatements[(int)PreparedSelectStatement.SEL_SINGLE_EVENT] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time
                                                                                 FROM Event INNER JOIN Single_event ON Event.id_event = Single_event.id_event
                                                                                 WHERE Event.id_event = @id";

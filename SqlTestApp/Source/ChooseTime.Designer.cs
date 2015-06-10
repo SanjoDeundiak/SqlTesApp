@@ -48,12 +48,12 @@
             this.timeDataGridView.Location = new System.Drawing.Point(12, 12);
             this.timeDataGridView.Name = "timeDataGridView";
             this.timeDataGridView.RowHeadersVisible = false;
-            this.timeDataGridView.Size = new System.Drawing.Size(499, 208);
+            this.timeDataGridView.Size = new System.Drawing.Size(479, 208);
             this.timeDataGridView.TabIndex = 0;
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(436, 226);
+            this.OK.Location = new System.Drawing.Point(416, 226);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(75, 23);
             this.OK.TabIndex = 1;
@@ -67,6 +67,7 @@
             this.number.HeaderText = "№";
             this.number.Name = "number";
             this.number.ReadOnly = true;
+            this.number.Width = 50;
             // 
             // time
             // 
@@ -74,6 +75,7 @@
             this.time.HeaderText = "Час";
             this.time.Name = "time";
             this.time.ReadOnly = true;
+            this.time.Width = 400;
             // 
             // check
             // 
@@ -84,13 +86,14 @@
             this.check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.check.TrueValue = "true";
+            this.check.Width = 25;
             // 
             // ChooseTime
             // 
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 261);
+            this.ClientSize = new System.Drawing.Size(503, 261);
             this.Controls.Add(this.OK);
             this.Controls.Add(this.timeDataGridView);
             this.Name = "ChooseTime";

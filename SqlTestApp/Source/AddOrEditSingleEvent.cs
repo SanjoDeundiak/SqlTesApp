@@ -47,6 +47,11 @@ namespace SqlTestApp
             if (name == "")
                 return;
 
+            if (name.Length >= 40)
+            {
+                name = name.Substring(0, 40);
+            }
+
             if (eventId == 0)
             {
                 DataTable dt = DatabaseManager.addSingleEvent(name, Utils.ParseTime(startDateTimePicker), Utils.ParseTime(endDateTimePicker));

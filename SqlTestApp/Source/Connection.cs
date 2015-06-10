@@ -55,7 +55,8 @@ namespace SqlTestApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
+                MessageBox.Show("Test");
                 return null;
             }
 

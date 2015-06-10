@@ -31,11 +31,6 @@
             this.eventTabControl = new System.Windows.Forms.TabControl();
             this.periodicTab = new System.Windows.Forms.TabPage();
             this.periodicDataGridView = new System.Windows.Forms.DataGridView();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lessonTimes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.singleTab = new System.Windows.Forms.TabPage();
             this.singleDataGridView = new System.Windows.Forms.DataGridView();
             this.addButton = new System.Windows.Forms.Button();
@@ -45,6 +40,11 @@
             this.name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lessonTimes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventTabControl.SuspendLayout();
             this.periodicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.periodicDataGridView)).BeginInit();
@@ -61,6 +61,8 @@
             this.eventTabControl.SelectedIndex = 0;
             this.eventTabControl.Size = new System.Drawing.Size(822, 400);
             this.eventTabControl.TabIndex = 0;
+            this.eventTabControl.SelectedIndexChanged += new System.EventHandler(this.eventTabControl_SelectedIndexChanged);
+            this.eventTabControl.TabIndexChanged += new System.EventHandler(this.eventTabControl_TabIndexChanged);
             // 
             // periodicTab
             // 
@@ -86,53 +88,13 @@
             this.TypeName,
             this.sportName,
             this.lessonTimes});
-            this.periodicDataGridView.Location = new System.Drawing.Point(6, 6);
+            this.periodicDataGridView.Location = new System.Drawing.Point(-4, 0);
             this.periodicDataGridView.MultiSelect = false;
             this.periodicDataGridView.Name = "periodicDataGridView";
             this.periodicDataGridView.ReadOnly = true;
             this.periodicDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.periodicDataGridView.Size = new System.Drawing.Size(801, 362);
+            this.periodicDataGridView.Size = new System.Drawing.Size(822, 362);
             this.periodicDataGridView.TabIndex = 0;
-            // 
-            // number
-            // 
-            this.number.DataPropertyName = "number";
-            this.number.HeaderText = "№";
-            this.number.Name = "number";
-            this.number.ReadOnly = true;
-            this.number.Width = 43;
-            // 
-            // name
-            // 
-            this.name.DataPropertyName = "name";
-            this.name.HeaderText = "Назва події";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Width = 200;
-            // 
-            // TypeName
-            // 
-            this.TypeName.DataPropertyName = "type_name";
-            this.TypeName.HeaderText = "Тип";
-            this.TypeName.Name = "TypeName";
-            this.TypeName.ReadOnly = true;
-            this.TypeName.Width = 51;
-            // 
-            // sportName
-            // 
-            this.sportName.DataPropertyName = "sport_names";
-            this.sportName.HeaderText = "Спорт";
-            this.sportName.Name = "sportName";
-            this.sportName.ReadOnly = true;
-            this.sportName.Width = 62;
-            // 
-            // lessonTimes
-            // 
-            this.lessonTimes.DataPropertyName = "LessonTimes";
-            this.lessonTimes.HeaderText = "Часи занять";
-            this.lessonTimes.Name = "lessonTimes";
-            this.lessonTimes.ReadOnly = true;
-            this.lessonTimes.Width = 400;
             // 
             // singleTab
             // 
@@ -155,11 +117,11 @@
             this.name1,
             this.startTime,
             this.endTime});
-            this.singleDataGridView.Location = new System.Drawing.Point(3, 6);
+            this.singleDataGridView.Location = new System.Drawing.Point(-4, 0);
             this.singleDataGridView.MultiSelect = false;
             this.singleDataGridView.Name = "singleDataGridView";
             this.singleDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.singleDataGridView.Size = new System.Drawing.Size(805, 362);
+            this.singleDataGridView.Size = new System.Drawing.Size(822, 362);
             this.singleDataGridView.TabIndex = 0;
             // 
             // addButton
@@ -174,7 +136,7 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(761, 418);
+            this.editButton.Location = new System.Drawing.Point(755, 418);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(75, 23);
             this.editButton.TabIndex = 2;
@@ -185,11 +147,13 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(603, 422);
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(573, 422);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(71, 17);
+            this.checkBox1.Size = new System.Drawing.Size(101, 17);
             this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Майбутні";
+            this.checkBox1.Text = "Лише майбутні";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -200,13 +164,15 @@
             this.number1.HeaderText = "№";
             this.number1.Name = "number1";
             this.number1.ReadOnly = true;
+            this.number1.Width = 50;
             // 
             // name1
             // 
             this.name1.DataPropertyName = "name";
-            this.name1.HeaderText = "Назва";
+            this.name1.HeaderText = "Назва події";
             this.name1.Name = "name1";
             this.name1.ReadOnly = true;
+            this.name1.Width = 200;
             // 
             // startTime
             // 
@@ -214,6 +180,7 @@
             this.startTime.HeaderText = "Початок";
             this.startTime.Name = "startTime";
             this.startTime.ReadOnly = true;
+            this.startTime.Width = 200;
             // 
             // endTime
             // 
@@ -221,6 +188,46 @@
             this.endTime.HeaderText = "Кінець";
             this.endTime.Name = "endTime";
             this.endTime.ReadOnly = true;
+            this.endTime.Width = 200;
+            // 
+            // number
+            // 
+            this.number.DataPropertyName = "number";
+            this.number.HeaderText = "№";
+            this.number.Name = "number";
+            this.number.ReadOnly = true;
+            this.number.Width = 50;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Назва події";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 200;
+            // 
+            // TypeName
+            // 
+            this.TypeName.DataPropertyName = "type_name";
+            this.TypeName.HeaderText = "Тип";
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
+            // 
+            // sportName
+            // 
+            this.sportName.DataPropertyName = "sport_names";
+            this.sportName.HeaderText = "Спорт";
+            this.sportName.Name = "sportName";
+            this.sportName.ReadOnly = true;
+            this.sportName.Width = 110;
+            // 
+            // lessonTimes
+            // 
+            this.lessonTimes.DataPropertyName = "LessonTimes";
+            this.lessonTimes.HeaderText = "Часи занять";
+            this.lessonTimes.Name = "lessonTimes";
+            this.lessonTimes.ReadOnly = true;
+            this.lessonTimes.Width = 290;
             // 
             // PlanWindow
             // 
@@ -250,11 +257,6 @@
         private System.Windows.Forms.TabPage singleTab;
         private System.Windows.Forms.DataGridView periodicDataGridView;
         private System.Windows.Forms.DataGridView singleDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sportName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lessonTimes;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -262,5 +264,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name1;
         private System.Windows.Forms.DataGridViewTextBoxColumn startTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn endTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sportName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lessonTimes;
     }
 }
