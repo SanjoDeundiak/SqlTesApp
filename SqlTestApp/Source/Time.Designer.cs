@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Time));
             this.timeDataGridView = new System.Windows.Forms.DataGridView();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,8 +83,12 @@
             this.ClientSize = new System.Drawing.Size(354, 261);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.timeDataGridView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Time";
-            this.Text = "Time";
+            this.Text = "Час";
             ((System.ComponentModel.ISupportInitialize)(this.timeDataGridView)).EndInit();
             this.ResumeLayout(false);
 

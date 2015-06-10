@@ -28,6 +28,8 @@ namespace SqlTestApp
 
         private void init()
         {
+            editButton.Enabled = Connection.CanEdit;
+
             periodicDataGridView.DataSource = DatabaseManager.getPeriodicEvents();
             singleDataGridView.DataSource = DatabaseManager.getSingleEvents(!checkBox1.Checked);
         }

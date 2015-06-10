@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseSport));
             this.sportDataGridView = new System.Windows.Forms.DataGridView();
-            this.OKButton = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.OKButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sportDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,16 +51,6 @@
             this.sportDataGridView.RowHeadersVisible = false;
             this.sportDataGridView.Size = new System.Drawing.Size(502, 208);
             this.sportDataGridView.TabIndex = 0;
-            // 
-            // OKButton
-            // 
-            this.OKButton.Location = new System.Drawing.Point(439, 226);
-            this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(75, 23);
-            this.OKButton.TabIndex = 1;
-            this.OKButton.Text = "OK";
-            this.OKButton.UseVisualStyleBackColor = true;
-            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // number
             // 
@@ -84,6 +75,16 @@
             this.check.Name = "check";
             this.check.TrueValue = "true";
             // 
+            // OKButton
+            // 
+            this.OKButton.Location = new System.Drawing.Point(439, 226);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.TabIndex = 1;
+            this.OKButton.Text = "OK";
+            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            // 
             // ChooseSport
             // 
             this.AcceptButton = this.OKButton;
@@ -92,8 +93,12 @@
             this.ClientSize = new System.Drawing.Size(526, 261);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.sportDataGridView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ChooseSport";
-            this.Text = "ChooseSport";
+            this.Text = "Спорт";
             ((System.ComponentModel.ISupportInitialize)(this.sportDataGridView)).EndInit();
             this.ResumeLayout(false);
 

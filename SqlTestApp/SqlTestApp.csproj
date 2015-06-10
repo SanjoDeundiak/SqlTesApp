@@ -178,6 +178,7 @@
     <Compile Include="Source\Time.Designer.cs">
       <DependentUpon>Time.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Source\AddEquipmentRequest.resx">
       <DependentUpon>AddEquipmentRequest.cs</DependentUpon>
     </EmbeddedResource>

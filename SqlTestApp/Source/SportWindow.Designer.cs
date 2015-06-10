@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SportWindow));
             this.sportDataGridView = new System.Windows.Forms.DataGridView();
-            this.addButton = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sportDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,16 +51,6 @@
             this.sportDataGridView.Size = new System.Drawing.Size(254, 202);
             this.sportDataGridView.TabIndex = 0;
             // 
-            // addButton
-            // 
-            this.addButton.Location = new System.Drawing.Point(191, 220);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 1;
-            this.addButton.Text = "Додати";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
-            // 
             // number
             // 
             this.number.DataPropertyName = "number";
@@ -76,6 +67,16 @@
             this.name.ReadOnly = true;
             this.name.Width = 200;
             // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(191, 220);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 1;
+            this.addButton.Text = "Додати";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
             // SportWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,8 +84,12 @@
             this.ClientSize = new System.Drawing.Size(279, 255);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.sportDataGridView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SportWindow";
-            this.Text = "SportWindow";
+            this.Text = "Спорт";
             ((System.ComponentModel.ISupportInitialize)(this.sportDataGridView)).EndInit();
             this.ResumeLayout(false);
 

@@ -13,16 +13,34 @@ namespace SqlTestApp
     {
         static SqlConnection connection;
 
+        private static bool canEditInitialized = false;
+        private static bool canEdit;
+        public static bool CanEdit
+        {
+            get
+            {
+                if (canEditInitialized)
+                    return canEdit;
+
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connection.ConnectionString);
+                String userName = builder.UserID;
+
+                canEdit = executeCanEdit(userName);
+                return canEdit;
+            }
+        }
+
         static public void Connect(String serverName, String login, String password)
         {
             String connectionString = "Addr=" + serverName + ";Database=BD;UID=" + login + ";PWD=" + password;
             if (connection != null)
             {
-                connection.Close();
+                Disconnect();
             }
 
             connection = new SqlConnection(connectionString);
             connection.Open();
+            canEditInitialized = false;
         }
 
         static private void fillInParameters(SqlCommand command, Dictionary<String, String> parameters)
@@ -39,6 +57,7 @@ namespace SqlTestApp
         static public void Disconnect()
         {
             connection.Close();
+            canEditInitialized = false;
         }
 
         static public SqlDataReader executeStatementAndGetReader(String statement, Dictionary<String, String> parameters = null)
@@ -55,8 +74,7 @@ namespace SqlTestApp
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
-                MessageBox.Show("Test");
+                MessageBox.Show(ex.Message);
                 return null;
             }
 
@@ -99,6 +117,33 @@ namespace SqlTestApp
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        static public Boolean executeCanEdit(String userName)
+        {
+            SqlCommand command = new SqlCommand("CanEdit", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add("@RETURN_VALUE", SqlDbType.Bit).Direction = ParameterDirection.ReturnValue;
+            command.Parameters.AddWithValue("@userName", userName);
+            
+
+            Boolean res = true;
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                res = false;
+                MessageBox.Show(ex.Message);
+            }
+
+            if (res)
+            {
+                res = (Boolean)command.Parameters["@RETURN_VALUE"].Value;
+            }
+
+            return res;
         }
     }
 }

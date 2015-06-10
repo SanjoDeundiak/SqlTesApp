@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseTime));
             this.timeDataGridView = new System.Windows.Forms.DataGridView();
-            this.OK = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.OK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.timeDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,16 +51,6 @@
             this.timeDataGridView.RowHeadersVisible = false;
             this.timeDataGridView.Size = new System.Drawing.Size(479, 208);
             this.timeDataGridView.TabIndex = 0;
-            // 
-            // OK
-            // 
-            this.OK.Location = new System.Drawing.Point(416, 226);
-            this.OK.Name = "OK";
-            this.OK.Size = new System.Drawing.Size(75, 23);
-            this.OK.TabIndex = 1;
-            this.OK.Text = "OK";
-            this.OK.UseVisualStyleBackColor = true;
-            this.OK.Click += new System.EventHandler(this.OK_Click);
             // 
             // number
             // 
@@ -88,6 +79,16 @@
             this.check.TrueValue = "true";
             this.check.Width = 25;
             // 
+            // OK
+            // 
+            this.OK.Location = new System.Drawing.Point(416, 226);
+            this.OK.Name = "OK";
+            this.OK.Size = new System.Drawing.Size(75, 23);
+            this.OK.TabIndex = 1;
+            this.OK.Text = "OK";
+            this.OK.UseVisualStyleBackColor = true;
+            this.OK.Click += new System.EventHandler(this.OK_Click);
+            // 
             // ChooseTime
             // 
             this.AcceptButton = this.OK;
@@ -96,8 +97,12 @@
             this.ClientSize = new System.Drawing.Size(503, 261);
             this.Controls.Add(this.OK);
             this.Controls.Add(this.timeDataGridView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ChooseTime";
-            this.Text = "ChooseTime";
+            this.Text = "Час";
             ((System.ComponentModel.ISupportInitialize)(this.timeDataGridView)).EndInit();
             this.ResumeLayout(false);
 
