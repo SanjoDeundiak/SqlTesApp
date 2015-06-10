@@ -55,5 +55,11 @@ namespace SqlTestApp
 
             this.Close();
         }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Form form = new AddTime();
+            form.ShowDialog(this);
+        }
     }
 }

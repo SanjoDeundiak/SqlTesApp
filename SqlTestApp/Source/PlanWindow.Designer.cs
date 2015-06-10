@@ -47,6 +47,8 @@
             this.editButton = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.reportButton = new System.Windows.Forms.Button();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
             this.eventTabControl.SuspendLayout();
             this.periodicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.periodicDataGridView)).BeginInit();
@@ -241,11 +243,30 @@
             this.reportButton.UseVisualStyleBackColor = true;
             this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
             // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(502, 5);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(148, 20);
+            this.searchTextBox.TabIndex = 4;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(656, 5);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.TabIndex = 1;
+            this.searchButton.Text = "Пошук";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
             // PlanWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 455);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.reportButton);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.editButton);
@@ -287,5 +308,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sportName;
         private System.Windows.Forms.DataGridViewTextBoxColumn lessonTimes;
         private System.Windows.Forms.Button reportButton;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Button searchButton;
     }
 }

@@ -56,5 +56,11 @@ namespace SqlTestApp
 
             this.Close();
         }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            Form form = new AddSport();
+            form.ShowDialog(this);
+        }
     }
 }

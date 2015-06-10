@@ -104,5 +104,19 @@ namespace SqlTestApp
             Form form = new ReportView();
             form.ShowDialog(this);
         }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            if (eventTabControl.SelectedIndex == 0)
+            {
+                DataTable dt = (DataTable)periodicDataGridView.DataSource;
+                String filter = String.Format("name LIKE '%{0}%'", searchTextBox.Text);
+                dt.DefaultView.RowFilter = filter;
+            }
+            else
+            {
+                checkBox1.Visible = true;
+            }
+        }
     }
 }
