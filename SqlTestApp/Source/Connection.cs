@@ -40,6 +40,7 @@ namespace SqlTestApp
 
             connection = new SqlConnection(connectionString);
             connection.Open();
+            global::SqlTestApp.Properties.Settings.Default.BDConnectionString = connectionString;
             canEditInitialized = false;
         }
 

@@ -58,5 +58,17 @@ namespace SqlTestApp.Properties {
                 this["password"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        public string BDConnectionString {
+            get {
+                return ((string)(this["BDConnectionString"]));
+            }
+            set {
+                this["BDConnectionString"] = value;
+            }
+        }
     }
 }

@@ -32,8 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BDDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Source\ReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\AddEquipmentRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +193,9 @@
       <DependentUpon>Time.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Source\ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\AddEquipmentRequest.resx">
       <DependentUpon>AddEquipmentRequest.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,6 +261,17 @@
     <EmbeddedResource Include="Source\Time.resx">
       <DependentUpon>Time.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="BDDataSet.xsc">
+      <DependentUpon>BDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BDDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BDDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BDDataSet.xss">
+      <DependentUpon>BDDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -255,7 +283,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -239,6 +239,7 @@
             this.reportButton.TabIndex = 3;
             this.reportButton.Text = "Звіт";
             this.reportButton.UseVisualStyleBackColor = true;
+            this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
             // 
             // PlanWindow
             // 

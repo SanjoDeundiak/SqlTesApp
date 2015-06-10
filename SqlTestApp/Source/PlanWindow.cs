@@ -98,5 +98,11 @@ namespace SqlTestApp
                 checkBox1.Visible = true;
             }
         }
+
+        private void reportButton_Click(object sender, EventArgs e)
+        {
+            Form form = new ReportView();
+            form.ShowDialog(this);
+        }
     }
 }
