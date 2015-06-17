@@ -66,7 +66,7 @@
             this.weekDayComboBox.Location = new System.Drawing.Point(86, 24);
             this.weekDayComboBox.Name = "weekDayComboBox";
             this.weekDayComboBox.Size = new System.Drawing.Size(133, 21);
-            this.weekDayComboBox.TabIndex = 2;
+            this.weekDayComboBox.TabIndex = 1;
             // 
             // startMinComboBox
             // 
@@ -84,7 +84,7 @@
             this.startHoursComboBox.Location = new System.Drawing.Point(120, 51);
             this.startHoursComboBox.Name = "startHoursComboBox";
             this.startHoursComboBox.Size = new System.Drawing.Size(47, 21);
-            this.startHoursComboBox.TabIndex = 4;
+            this.startHoursComboBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -102,7 +102,7 @@
             this.durationMinComboBox.Location = new System.Drawing.Point(174, 78);
             this.durationMinComboBox.Name = "durationMinComboBox";
             this.durationMinComboBox.Size = new System.Drawing.Size(46, 21);
-            this.durationMinComboBox.TabIndex = 6;
+            this.durationMinComboBox.TabIndex = 5;
             // 
             // durationHoursComboBox
             // 
@@ -111,7 +111,7 @@
             this.durationHoursComboBox.Location = new System.Drawing.Point(121, 79);
             this.durationHoursComboBox.Name = "durationHoursComboBox";
             this.durationHoursComboBox.Size = new System.Drawing.Size(46, 21);
-            this.durationHoursComboBox.TabIndex = 7;
+            this.durationHoursComboBox.TabIndex = 4;
             // 
             // cancelButton
             // 
@@ -119,7 +119,7 @@
             this.cancelButton.Location = new System.Drawing.Point(145, 121);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 8;
+            this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -128,7 +128,7 @@
             this.OKButton.Location = new System.Drawing.Point(64, 121);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
-            this.OKButton.TabIndex = 9;
+            this.OKButton.TabIndex = 6;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);

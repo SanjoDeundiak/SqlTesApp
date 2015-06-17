@@ -45,7 +45,7 @@
             this.serverNameTextBox.Location = new System.Drawing.Point(138, 12);
             this.serverNameTextBox.Name = "serverNameTextBox";
             this.serverNameTextBox.Size = new System.Drawing.Size(232, 20);
-            this.serverNameTextBox.TabIndex = 0;
+            this.serverNameTextBox.TabIndex = 1;
             this.serverNameTextBox.Text = global::SqlTestApp.Properties.Settings.Default.serverName;
             // 
             // label1
@@ -72,7 +72,7 @@
             this.loginTextBox.Location = new System.Drawing.Point(166, 38);
             this.loginTextBox.Name = "loginTextBox";
             this.loginTextBox.Size = new System.Drawing.Size(204, 20);
-            this.loginTextBox.TabIndex = 3;
+            this.loginTextBox.TabIndex = 2;
             this.loginTextBox.Text = global::SqlTestApp.Properties.Settings.Default.login;
             // 
             // label3
@@ -91,7 +91,7 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(204, 20);
-            this.passwordTextBox.TabIndex = 5;
+            this.passwordTextBox.TabIndex = 3;
             this.passwordTextBox.Text = global::SqlTestApp.Properties.Settings.Default.password;
             // 
             // Connect
@@ -99,7 +99,7 @@
             this.Connect.Location = new System.Drawing.Point(214, 107);
             this.Connect.Name = "Connect";
             this.Connect.Size = new System.Drawing.Size(75, 23);
-            this.Connect.TabIndex = 6;
+            this.Connect.TabIndex = 4;
             this.Connect.Text = "Connect";
             this.Connect.UseVisualStyleBackColor = true;
             this.Connect.Click += new System.EventHandler(this.Connect_Click);
@@ -118,7 +118,7 @@
             this.Cancel.Location = new System.Drawing.Point(295, 107);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 8;
+            this.Cancel.TabIndex = 5;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);

@@ -15,6 +15,7 @@ namespace SqlTestApp
         Int16 eventId;
         List<Int16> fk_sports = new List<Int16>();
         List<Int16> fk_times = new List<Int16>();
+        Int16 workPlace = 0;
         public AddOrEditEvent(Int16 eventId = 0)
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace SqlTestApp
 
             typeComboBox.SelectedIndex = 0;
 
+            PeriodicEvent ev = null;
             if (eventId != 0)
             {
                 DataTable dt = DatabaseManager.getSportForEvent(eventId);
@@ -46,12 +48,13 @@ namespace SqlTestApp
                     fk_times.Add(Convert.ToInt16(row["fk_lesson"]));
                 }
 
-                PeriodicEvent ev = DatabaseManager.getPeriodicEvent(eventId);
+                ev = DatabaseManager.getPeriodicEvent(eventId);
+                workPlace = ev.workPlaceId;
                 nameTextBox.Text = ev.Name;
                 timeTextBox.Text = ev.LessonTimes;
                 typeComboBox.SelectedIndex = ev.type - 1;
             }
-
+            updateHead();
             updateSports();
             //updateTimes();
         }
@@ -64,7 +67,7 @@ namespace SqlTestApp
             foreach (DataRow row in dt.Rows)
             {
                 sportTextBox.Text += ((sportTextBox.Text == "") ? "" : ", ") + Convert.ToString(row["name"]);
-            }
+            } 
         }
 
         private void updateTimes()
@@ -78,6 +81,19 @@ namespace SqlTestApp
             }
         }
 
+        private void updateHead()
+        {
+            if (workPlace != 0)
+            {
+                DataTable dt = DatabaseManager.getWorkPlace(workPlace);
+                textBox1.Text = dt.Rows[0]["name"].ToString();
+            }
+            else
+            {
+                textBox1.Text = "";
+            }
+        }
+
         private void OKButton_Click(object sender, EventArgs e)
         {
             Int16 type = Convert.ToInt16(typeComboBox.SelectedValue);
@@ -88,12 +104,12 @@ namespace SqlTestApp
 
             if (eventId == 0)
             {
-                DataTable dt = DatabaseManager.addPeriodicEvent(name, type);
+                DataTable dt = DatabaseManager.addPeriodicEvent(name, type, workPlace);
                 eventId = Convert.ToInt16(dt.Rows[0]["id_event"]);
             }
             else
             {
-                DatabaseManager.updatePeriodicEvent(eventId, type, name);
+                DatabaseManager.updatePeriodicEvent(eventId, type, name, workPlace);
             }
 
             DatabaseManager.setEventSports(eventId, fk_sports);
@@ -112,6 +128,18 @@ namespace SqlTestApp
         {
             ChooseTime.ShowChooseTime(this, fk_times);
             updateTimes();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            workPlace = ChooseHead.ShowChooseHead(this, fk_sports);
+            updateHead();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            workPlace = 0;
+            updateHead();
         }
     }
 }

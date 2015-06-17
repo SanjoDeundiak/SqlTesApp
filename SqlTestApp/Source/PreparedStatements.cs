@@ -14,7 +14,8 @@ namespace SqlTestApp
     }
     enum PreparedSelectStatement
     {
-        SEL_IND_CLIENT,
+        SEL_IND_CLIENTS,
+        SEL_IND_CLIENTS_SHORT,
         SEL_LOG,
         SEL_PERIODIC_EVENTS,
         SEL_PERIODIC_EVENT,
@@ -34,6 +35,10 @@ namespace SqlTestApp
         SEL_SINGLE_EVENT,
         SEL_EQUIPMENT_ALL_REQUESTS,
         SEL_EQUIPMENT_ACCEPTED_REQUESTS,
+        SEL_WORK,
+        SEL_WORK_PLACES,
+        SEL_WORK_PLACE,
+        SEL_WORK_PLACES_SPORT,
         SIZE
     }
     enum PreparedInsertStatement
@@ -46,6 +51,8 @@ namespace SqlTestApp
         INS_EQUIPMENT,
         INS_REQUEST,
         INS_EQUIPMENT_REQUEST,
+        INS_WORK,
+        INS_WORK_PLACE,
         SIZE
     }
     enum PreparedUpdateStatement
@@ -55,6 +62,7 @@ namespace SqlTestApp
         UPD_SINGLE_EVENT,
         UPD_ACCEPT_REQUEST,
         UPD_REJECT_REQUEST,
+        UPD_DISMISS,
         SIZE
     }
     enum PreparedDeleteStatement
@@ -77,10 +85,12 @@ namespace SqlTestApp
             storedProcedures[(int)StoredProcedure.PROC_UPDATE_TIMES] = "UpdateTimes";
 
             // Select statements here
-            selectStatements[(int)PreparedSelectStatement.SEL_IND_CLIENT] = "SELECT id_client, name, middle_name, surname, date_of_birth, address, time_of_registration FROM IndividualClient";
+            selectStatements[(int)PreparedSelectStatement.SEL_IND_CLIENTS] = "SELECT id_client, name, middle_name, surname, date_of_birth, address, time_of_registration FROM IndividualClient";
+            selectStatements[(int)PreparedSelectStatement.SEL_IND_CLIENTS_SHORT] = "SELECT id_client, CONCAT(IndividualClient.name, ' ', IndividualClient.surname) as clientName FROM IndividualClient";
             selectStatements[(int)PreparedSelectStatement.SEL_LOG] = "SELECT * FROM IndividualLog";
-            selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENTS] = "SELECT name, sport_names, id_event, LessonTimes, type_name FROM PeriodicEventView";
-            selectStatements[(int)PreparedSelectStatement.SEL_SINGLE_EVENTS] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time 
+            selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENTS] = @"SELECT name, sport_names, id_event, LessonTimes, type_name, headName
+                                                                                FROM PeriodicEventView";
+            selectStatements[(int)PreparedSelectStatement.SEL_SINGLE_EVENTS] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time
                                                                                 FROM Event INNER JOIN Single_event ON Event.id_event = Single_event.id_event";
             selectStatements[(int)PreparedSelectStatement.SEL_NOT_PASSED_SINGLE_EVENTS] = @"SELECT name, Event.id_event, fk_route, passed, start_time, end_time 
                                                                                 FROM Event INNER JOIN Single_event ON Event.id_event = Single_event.id_event
@@ -95,7 +105,7 @@ namespace SqlTestApp
             selectStatements[(int)PreparedSelectStatement.SEL_SPORT_NAMES_FOR_KEYS] = "SELECT name FROM Sport WHERE id_sport in ({0})";
             selectStatements[(int)PreparedSelectStatement.SEL_TIMES_FOR_KEYS] = "SELECT time, id_lesson FROM TimesForLessons WHERE id_lesson in ({0})";
             selectStatements[(int)PreparedSelectStatement.SEL_TIMES] = "SELECT time, id_lesson FROM TimesForLessons";
-            selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENT] = @"SELECT id_event, name, type, LessonTimes FROM PeriodicEventView WHERE id_event = @id_event";
+            selectStatements[(int)PreparedSelectStatement.SEL_PERIODIC_EVENT] = @"SELECT id_event, name, type, LessonTimes, workPlaceId FROM PeriodicEventView WHERE id_event = @id_event";
             selectStatements[(int)PreparedSelectStatement.SEL_WEEK_DAYS] = @"SELECT day_of_week, name_of_day FROM DayOfWeekName";
             selectStatements[(int)PreparedSelectStatement.SEL_EQUIPMENT] = @"SELECT id_equipment, name FROM Equipment";
             selectStatements[(int)PreparedSelectStatement.SEL_ACCEPTED_REQUEST] = @"SELECT id_request, id_client, registration_date, Event.name as event_name, IndividualClient.name as client_name, surname
@@ -114,14 +124,23 @@ namespace SqlTestApp
                                                                            INNER JOIN IndividualClient ON Request.fk_client = IndividualClient.id_client
                                                                            LEFT JOIN Single_event ON Single_event.id_event = Request.fk_event
                                                                            LEFT JOIN Event on Single_event.id_event = Event.id_event WHERE accepted = 1";
-            
+            selectStatements[(int)PreparedSelectStatement.SEL_WORK] = @"SELECT id_work, Work.name, salary, Sport.name as sport_name
+                                                                           FROM Work INNER JOIN Sport ON Work.fk_sport = Sport.id_sport";
+            selectStatements[(int)PreparedSelectStatement.SEL_WORK_PLACES] = @"SELECT id, Work.name, CONCAT(IndividualClient.name, ' ', IndividualClient.surname) as clientName, startTime, endTime, valid
+                                                                           FROM Work_place INNER JOIN WORK ON Work.id_work = Work_place.fk_work LEFT JOIN IndividualClient ON IndividualClient.id_client = Work_place.fk_client";
+            selectStatements[(int)PreparedSelectStatement.SEL_WORK_PLACE] = @"SELECT id, CONCAT(Work.name + ': ', IndividualClient.name, ' ', IndividualClient.surname) as name
+                                                                           FROM Work_place INNER JOIN WORK ON Work.id_work = Work_place.fk_work INNER JOIN IndividualClient ON IndividualClient.id_client = Work_place.fk_client
+                                                                           WHERE id = @id";
+            selectStatements[(int)PreparedSelectStatement.SEL_WORK_PLACES_SPORT] = @"SELECT id, Work.name, CONCAT(IndividualClient.name, ' ', IndividualClient.surname) as clientName, startTime, endTime, valid
+                                                                           FROM Work_place INNER JOIN WORK ON Work.id_work = Work_place.fk_work INNER JOIN IndividualClient ON IndividualClient.id_client = Work_place.fk_client
+                                                                           WHERE fk_sport in ({0}) AND valid = 1";
 
             // Insert statements here
             insertStatements[(int)PreparedInsertStatement.INS_INDIVIDUAL] =
                 @"INSERT INTO Client (time_of_registration) VALUES(CURRENT_TIMESTAMP);
                   INSERT INTO Individual (id_client, name, middle_name, surname, date_of_birth, address) VALUES(IDENT_CURRENT('Client'), @name, @middleName, @surname, CONVERT(date, @dateOfBirth, 104), @address)";
             insertStatements[(int)PreparedInsertStatement.INS_PERIODIC_EVENT] =
-                @"INSERT INTO Event(name) OUTPUT INSERTED.id_event VALUES(@name);
+                @"INSERT INTO Event(name, fk_work_place) OUTPUT INSERTED.id_event VALUES(@name, @workPlaceId);
                   INSERT INTO Periodic_event (id_event, type) VALUES(IDENT_CURRENT('Event'), @type)";
             insertStatements[(int)PreparedInsertStatement.INS_SINGLE_EVENT] =
                 @"INSERT INTO Event(name) OUTPUT INSERTED.id_event VALUES(@name);
@@ -132,19 +151,25 @@ namespace SqlTestApp
             insertStatements[(int)PreparedInsertStatement.INS_REQUEST] = @"INSERT INTO Request(fk_event, fk_client, accepted, registration_date) VALUES(@eventId, @clientId, 0, CURRENT_TIMESTAMP)";
             insertStatements[(int)PreparedInsertStatement.INS_EQUIPMENT_REQUEST] =
                 @"INSERT INTO Request(fk_event, fk_client, accepted, registration_date) VALUES(@eventId, @clientId, 0, CURRENT_TIMESTAMP)
-                  INSERT INTO Document_on_equipment(id_request, fk_equipment, quantity) VALUES(IDENT_CURRENT('Request'), @equipmentId, @quantity)";            
+                  INSERT INTO Document_on_equipment(id_request, fk_equipment, quantity) VALUES(IDENT_CURRENT('Request'), @equipmentId, @quantity)";
+            insertStatements[(int)PreparedInsertStatement.INS_WORK] = "INSERT INTO Work(name, fk_sport, salary) VALUES(@name, @sportId, @salary)";
+            insertStatements[(int)PreparedInsertStatement.INS_WORK_PLACE] = "INSERT INTO Work_place(fk_work, fk_client, startTime) VALUES(@idWork, @idClient, @startTime)";
+
 
             // Update statements here
             updateStatements[(int)PreparedUpdateStatement.UPD_INDIVIDUAL] =
                 "UPDATE Individual SET name = @name, middle_name = @middleName, surname = @surname, date_of_birth = CONVERT(date, @dateOfBirth, 104), address = @address WHERE id_client = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_PERIODIC_EVENT] =
                 @"UPDATE Periodic_event SET type = @type WHERE id_event = @id;
-                  UPDATE Event SET name = @name WHERE id_event = @id";
+                  UPDATE Event SET name = @name, fk_work_place = @workPlaceId WHERE id_event = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_SINGLE_EVENT] =
                 @"UPDATE Single_event SET start_time = CONVERT(datetime, @start, 120), end_time = CONVERT(datetime, @end, 120) WHERE id_event = @id;
                   UPDATE Event SET name = @name WHERE id_event = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_ACCEPT_REQUEST] = "UPDATE Request SET accepted = 1 WHERE id_request = @id";
             updateStatements[(int)PreparedUpdateStatement.UPD_REJECT_REQUEST] = "UPDATE Request SET accepted = 0 WHERE id_request = @id";
+            updateStatements[(int)PreparedUpdateStatement.UPD_DISMISS] = @"UPDATE Work_place SET endTime = @endTime WHERE id = @id
+                                                                            UPDATE Event SET fk_work_place = (NULL) where fk_work_place = @id";    
+
 
             // Delete statements here
             deleteStatements[(int)PreparedDeleteStatement.DEL_INDIVIDUAL] = "DELETE FROM Client WHERE id_client = @id";

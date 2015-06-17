@@ -45,7 +45,10 @@ namespace SqlTestApp
             String name = nameTextBox.Text;
 
             if (name == "")
+            {
+                MessageBox.Show("Введіть назву події");
                 return;
+            }
 
             if (name.Length >= 40)
             {

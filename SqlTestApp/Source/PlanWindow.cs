@@ -26,9 +26,12 @@ namespace SqlTestApp
             init();
         }
 
+        private bool canEdit = false;
+
         private void init()
         {
-            editButton.Enabled = Connection.CanEdit;
+            canEdit = Connection.CanEdit;
+            editButton.Enabled = canEdit;
 
             periodicDataGridView.DataSource = DatabaseManager.getPeriodicEvents();
             singleDataGridView.DataSource = DatabaseManager.getSingleEvents(!checkBox1.Checked);
@@ -89,6 +92,8 @@ namespace SqlTestApp
 
         private void eventTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            searchTextBox.Text = search[eventTabControl.SelectedIndex];
+
             if (eventTabControl.SelectedIndex == 0)
             {
                 checkBox1.Visible = false;
@@ -99,6 +104,8 @@ namespace SqlTestApp
             }
         }
 
+
+        private String[] search = new String[2];
         private void reportButton_Click(object sender, EventArgs e)
         {
             Form form = new ReportView();
@@ -107,15 +114,47 @@ namespace SqlTestApp
 
         private void searchButton_Click(object sender, EventArgs e)
         {
+            search[eventTabControl.SelectedIndex] = searchTextBox.Text;
             if (eventTabControl.SelectedIndex == 0)
             {
+                search[0] = searchTextBox.Text;
                 DataTable dt = (DataTable)periodicDataGridView.DataSource;
                 String filter = String.Format("name LIKE '%{0}%'", searchTextBox.Text);
                 dt.DefaultView.RowFilter = filter;
             }
             else
             {
-                checkBox1.Visible = true;
+                DataTable dt = (DataTable)singleDataGridView.DataSource;
+                String filter = String.Format("name LIKE '%{0}%'", searchTextBox.Text);
+                dt.DefaultView.RowFilter = filter;
+            }
+        }
+
+        private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                searchButton_Click(sender, e);
+            }
+        }
+
+        private void singleDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!canEdit || singleDataGridView.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            DataTable dt = (DataTable)singleDataGridView.DataSource;
+            DateTime endTime = DateTime.Parse(dt.Rows[singleDataGridView.SelectedRows[0].Index]["end_time"].ToString());
+
+            if (endTime < DateTime.Now)
+            {
+                editButton.Enabled = false;
+            }
+            else
+            {
+                editButton.Enabled = true;
             }
         }
     }

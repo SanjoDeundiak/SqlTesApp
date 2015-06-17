@@ -45,13 +45,22 @@ namespace SqlTestApp
     public class Event
     {
         public Int16 id;
+        public Int16 workPlaceId;
 
         private String name;
+
+        //private String headName;
         public String Name
         {
             get { return name; }
             set { name = Utils.ValidateString(value); }
         }
+
+        //public String HeadName
+        //{
+        //    get { return headName; }
+        //    set { headName = Utils.ValidateString(value); }
+        //}
     }
 
     public class PeriodicEvent : Event

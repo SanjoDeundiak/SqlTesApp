@@ -41,7 +41,7 @@
             this.calcelButton.Location = new System.Drawing.Point(264, 69);
             this.calcelButton.Name = "calcelButton";
             this.calcelButton.Size = new System.Drawing.Size(75, 23);
-            this.calcelButton.TabIndex = 0;
+            this.calcelButton.TabIndex = 3;
             this.calcelButton.Text = "Cancel";
             this.calcelButton.UseVisualStyleBackColor = true;
             // 
@@ -59,14 +59,14 @@
             this.nameTextBox.Location = new System.Drawing.Point(58, 30);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(281, 20);
-            this.nameTextBox.TabIndex = 2;
+            this.nameTextBox.TabIndex = 1;
             // 
             // OKButton
             // 
             this.OKButton.Location = new System.Drawing.Point(183, 69);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
-            this.OKButton.TabIndex = 3;
+            this.OKButton.TabIndex = 2;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);

@@ -47,6 +47,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\ChooseHead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\ChooseHead.Designer.cs">
+      <DependentUpon>ChooseHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Dismiss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Dismiss.Designer.cs">
+      <DependentUpon>Dismiss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\AddWorkPlace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddWorkPlace.Designer.cs">
+      <DependentUpon>AddWorkPlace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\AddWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\AddWork.Designer.cs">
+      <DependentUpon>AddWork.cs</DependentUpon>
+    </Compile>
     <Compile Include="BDDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -192,6 +216,30 @@
     <Compile Include="Source\Time.Designer.cs">
       <DependentUpon>Time.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\Work.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Work.Designer.cs">
+      <DependentUpon>Work.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\WorkPlaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\WorkPlaces.Designer.cs">
+      <DependentUpon>WorkPlaces.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Source\ChooseHead.resx">
+      <DependentUpon>ChooseHead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Dismiss.resx">
+      <DependentUpon>Dismiss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\AddWorkPlace.resx">
+      <DependentUpon>AddWorkPlace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\AddWork.resx">
+      <DependentUpon>AddWork.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Source\ReportView.resx">
       <DependentUpon>ReportView.cs</DependentUpon>
@@ -260,6 +308,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Time.resx">
       <DependentUpon>Time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Work.resx">
+      <DependentUpon>Work.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\WorkPlaces.resx">
+      <DependentUpon>WorkPlaces.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="BDDataSet.xsc">
       <DependentUpon>BDDataSet.xsd</DependentUpon>

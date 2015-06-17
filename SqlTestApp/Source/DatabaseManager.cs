@@ -24,7 +24,27 @@ namespace SqlTestApp
         }
         static public DataTable getIndividualClients()
         {
-            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_IND_CLIENT));
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_IND_CLIENTS));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getIndividualClientsShort()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_IND_CLIENTS_SHORT));
 
             DataTable dt = new DataTable("");
 
@@ -87,6 +107,24 @@ namespace SqlTestApp
             parameters["@name"] = name;
 
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_EQUIPMENT), parameters);
+        }
+
+        static public int dismiss(Int16 idWorkPlace, String endTime)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = idWorkPlace.ToString();
+            parameters["@endTime"] = endTime.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_DISMISS), parameters);
+        }
+        static public int addWorkPlace(Int16 idWork, Int16 idClient, String startTime)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@idWork"] = idWork.ToString();
+            parameters["@idClient"] = idClient.ToString();
+            parameters["@startTime"] = startTime;
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_WORK_PLACE), parameters);
         }
         
         static public int addTime(TimeEntity time)
@@ -187,6 +225,9 @@ namespace SqlTestApp
                 ev.Name = Convert.ToString(row["name"]);
                 ev.type = Convert.ToInt16(row["type"]);
                 ev.LessonTimes = Convert.ToString(row["LessonTimes"]);
+
+                var workPlaceId = row["workPlaceId"];
+                ev.workPlaceId = (workPlaceId == DBNull.Value) ? (Int16)0 : Convert.ToInt16(workPlaceId);
             }
 
             return ev;
@@ -472,6 +513,78 @@ namespace SqlTestApp
             return dt;
         }
 
+        static public DataTable getWorkPlaces()
+        {
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_WORK_PLACES));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getWorkPlace(Int16 workPlaceId)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@id"] = workPlaceId.ToString();
+            
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_WORK_PLACE), parameters);
+
+            DataTable dt = new DataTable("");
+
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public DataTable getWorkPlaces(List<Int16> fk_sports)
+        {
+            if (fk_sports.Count == 0)
+            {
+                DataTable DT = new DataTable();
+                DataColumn cl = new DataColumn("clientName");
+                DT.Columns.Add(cl);
+                cl = new DataColumn("id");
+                DT.Columns.Add(cl);
+                return DT;
+            }
+
+            String statement = PreparedStatements.GetStatement(PreparedSelectStatement.SEL_WORK_PLACES_SPORT);
+
+            String list = string.Join(",", fk_sports);
+
+            statement = String.Format(statement, list);
+
+            SqlDataReader reader = Connection.executeStatementAndGetReader(statement);
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
         static public DataTable getSportNames()
         {
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_SPORT_NAMES));
@@ -491,12 +604,34 @@ namespace SqlTestApp
 
             return dt;
         }
-        static public int updatePeriodicEvent(Int16 eventId, Int16 type, String name)
+
+        static public DataTable getWork()
         {
-            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedSelectStatement.SEL_WORK));
+
+            DataTable dt = new DataTable("");
+
+            DataColumn number = new DataColumn();
+            number.DataType = typeof(Int32);
+            number.AutoIncrementSeed = 1;
+            number.AutoIncrementStep = 1;
+            number.AutoIncrement = true;
+            number.ColumnName = "number";
+            dt.Columns.Add(number);
+
+            if (reader != null)
+                dt.Load(reader);
+
+            return dt;
+        }
+
+        static public int updatePeriodicEvent(Int16 eventId, Int16 type, String name, Int16 workPlaceId)
+        {
+            Dictionary<String, object> parameters = new Dictionary<string, object>();
             parameters["@id"] = eventId.ToString();
             parameters["@name"] = name;
             parameters["@type"] = type.ToString();
+            parameters["@workPlaceId"] = workPlaceId == 0 ? (object)DBNull.Value : workPlaceId.ToString();
             
             return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_PERIODIC_EVENT), parameters);
         }
@@ -508,13 +643,23 @@ namespace SqlTestApp
             parameters["@start"] = start;
             parameters["@end"] = end;
 
-            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_SINGLE_EVENT), parameters);;
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedUpdateStatement.UPD_SINGLE_EVENT), parameters);
         }
-        static public DataTable addPeriodicEvent(String name, Int16 type)
+        static public int addWork(Int16 sportId, String name, float salary)
+        {
+            Dictionary<String, String> parameters = new Dictionary<string, string>();
+            parameters["@sportId"] = sportId.ToString();
+            parameters["@name"] = name;
+            parameters["@salary"] = salary.ToString();
+
+            return Connection.executeStatement(PreparedStatements.GetStatement(PreparedInsertStatement.INS_WORK), parameters); ;
+        }
+        static public DataTable addPeriodicEvent(String name, Int16 type, Int16 workPlaceId)
         {
             Dictionary<String, String> parameters = new Dictionary<string, string>();
             parameters["@name"] = name;
             parameters["@type"] = type.ToString();
+            parameters["@workPlaceId"] = workPlaceId == 0 ? DBNull.Value.ToString() : workPlaceId.ToString();
 
             SqlDataReader reader = Connection.executeStatementAndGetReader(PreparedStatements.GetStatement(PreparedInsertStatement.INS_PERIODIC_EVENT), parameters);
 

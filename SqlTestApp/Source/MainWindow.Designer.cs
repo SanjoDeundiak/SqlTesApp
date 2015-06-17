@@ -36,6 +36,8 @@
             this.sportButton = new System.Windows.Forms.Button();
             this.timeButton = new System.Windows.Forms.Button();
             this.buttonEquipment = new System.Windows.Forms.Button();
+            this.workPlaceButton = new System.Windows.Forms.Button();
+            this.workButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,11 +106,33 @@
             this.buttonEquipment.UseVisualStyleBackColor = true;
             this.buttonEquipment.Click += new System.EventHandler(this.buttonEquipment_Click);
             // 
+            // workPlaceButton
+            // 
+            this.workPlaceButton.Location = new System.Drawing.Point(14, 203);
+            this.workPlaceButton.Name = "workPlaceButton";
+            this.workPlaceButton.Size = new System.Drawing.Size(204, 38);
+            this.workPlaceButton.TabIndex = 4;
+            this.workPlaceButton.Text = "Вакансії";
+            this.workPlaceButton.UseVisualStyleBackColor = true;
+            this.workPlaceButton.Click += new System.EventHandler(this.workPlaceButton_Click);
+            // 
+            // workButton
+            // 
+            this.workButton.Location = new System.Drawing.Point(14, 247);
+            this.workButton.Name = "workButton";
+            this.workButton.Size = new System.Drawing.Size(204, 38);
+            this.workButton.TabIndex = 5;
+            this.workButton.Text = "Посади";
+            this.workButton.UseVisualStyleBackColor = true;
+            this.workButton.Click += new System.EventHandler(this.workButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(230, 213);
+            this.ClientSize = new System.Drawing.Size(230, 302);
+            this.Controls.Add(this.workButton);
+            this.Controls.Add(this.workPlaceButton);
             this.Controls.Add(this.buttonEquipment);
             this.Controls.Add(this.timeButton);
             this.Controls.Add(this.sportButton);
@@ -138,5 +162,7 @@
         private System.Windows.Forms.Button sportButton;
         private System.Windows.Forms.Button timeButton;
         private System.Windows.Forms.Button buttonEquipment;
+        private System.Windows.Forms.Button workPlaceButton;
+        private System.Windows.Forms.Button workButton;
     }
 }

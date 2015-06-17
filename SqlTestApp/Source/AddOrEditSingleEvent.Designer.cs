@@ -71,7 +71,7 @@
             this.nameTextBox.Location = new System.Drawing.Point(72, 28);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(200, 20);
-            this.nameTextBox.TabIndex = 5;
+            this.nameTextBox.TabIndex = 1;
             // 
             // cancelButton
             // 
@@ -79,7 +79,7 @@
             this.cancelButton.Location = new System.Drawing.Point(197, 119);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 6;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -88,7 +88,7 @@
             this.OKButton.Location = new System.Drawing.Point(116, 119);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
-            this.OKButton.TabIndex = 7;
+            this.OKButton.TabIndex = 4;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
@@ -96,16 +96,18 @@
             // startDateTimePicker
             // 
             this.startDateTimePicker.Location = new System.Drawing.Point(71, 55);
+            this.startDateTimePicker.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.startDateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.startDateTimePicker.Name = "startDateTimePicker";
             this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.startDateTimePicker.TabIndex = 8;
+            this.startDateTimePicker.TabIndex = 2;
             // 
             // endDateTimePicker
             // 
             this.endDateTimePicker.Location = new System.Drawing.Point(70, 82);
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.endDateTimePicker.TabIndex = 9;
+            this.endDateTimePicker.TabIndex = 3;
             // 
             // AddOrEditSingleEvent
             // 

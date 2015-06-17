@@ -55,6 +55,18 @@ namespace SqlTestApp
             }
         }
 
+        static private void fillInParameters(SqlCommand command, Dictionary<String, object> parameters)
+        {
+            if (parameters == null)
+                return;
+
+            foreach (var param in parameters)
+            {
+                command.Parameters.AddWithValue(param.Key, (object)param.Value ?? DBNull.Value);
+            }
+        }
+
+
         static public void Disconnect()
         {
             connection.Close();
@@ -83,6 +95,26 @@ namespace SqlTestApp
         }
 
         static public int executeStatement(String statement, Dictionary<String, String> parameters = null)
+        {
+            SqlCommand command = new SqlCommand(statement, connection);
+
+            fillInParameters(command, parameters);
+
+            int rowsAffected = 0;
+
+            try
+            {
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+
+            return rowsAffected;
+        }
+        static public int executeStatement(String statement, Dictionary<String, object> parameters = null)
         {
             SqlCommand command = new SqlCommand(statement, connection);
 
